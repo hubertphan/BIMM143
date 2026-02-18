@@ -1,0 +1,67 @@
+---
+title: "Class 13: Transcriptomics and the analysis of RNA-Seq data"
+author: "Hubert Phan (PID: A 17663330)"
+format: html
+---
+
+## Bioconductor setup
+
+Check if all required depencies are installed:
+
+```{r,warning=FALSE}
+library(BiocManager)
+library(DESeq2)
+```
+
+### DESeq2 Required Inputs
+
+DESeq2 requires two inputs: (1) as data.frame of count data (from RNA-seq or other sequencing experiments) and (2) a second metadata data.frame which contains information about the samples. 
+
+## Import countData and colData
+
+Read in the counts matrix and metadata:
+```{r}
+# Complete the missing code
+counts <- read.csv("airway_scaledcounts.csv", row.names=1)
+metadata <-  read.csv("airway_metadata.csv")
+```
+
+Take a look at the head of each:
+```{r}
+head(counts)
+head(metadata)
+```
+
+>Q1. How many genes are in this dataset? 
+
+```{r}
+nrow(counts)
+```
+
+>Q2. How many ‘control’ cell lines do we have? 
+
+```{r}
+sum(metadata$dex == "control", na.rm = T)
+```
+
+## Toy differential gene expression
+
+This analysis is for **demonstration** only. Note the control samples in the metadata. Find the sample id for those label control and calculate the mean counts per gene across the samples.
+
+```{r}
+control <- metadata[metadata[,"dex"]=="control",]
+control.counts <- counts[ ,control$id]
+control.mean <- rowSums( control.counts )/4 
+head(control.mean)
+```
+
+>Side-note: An alternative way to do this same thing using the dplyr package from the tidyverse. Which do you prefer and why?
+
+**Ans:** I prefer the tidyverse method because it involves functions with names that relate to what I want to do. This makes it easier to remember which function to use.
+
+
+>Q3. How would you make the above code in either approach more robust? Is there a function that could help here? 
+
+
+
+>Q4. Follow the same procedure for the treated samples (i.e. calculate the mean per gene across drug treated samples and assign to a labeled vector called treated.mean)
