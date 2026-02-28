@@ -1,3 +1,3 @@
 ## BIMM 143 Bioinformatics lab
 
-This repo is for my UCSD bioinformatics class. 
+Repo for BIMM 143 lab work. Will store all lab work here, including code, data, and writeups. 
