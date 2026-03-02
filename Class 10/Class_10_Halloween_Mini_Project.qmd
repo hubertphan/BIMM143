@@ -1,0 +1,58 @@
+---
+title: "Class 10: Halloween Mini-Project"
+author: "Hubert Phan (PID: A17663330)"
+format: html
+---
+
+## Importing candy data
+
+```{r}
+candy_file <- "candy-data.csv"
+
+candy = read.csv(candy_file, row.names=1)
+head(candy)
+```
+
+> **Q1.** How many different candy types are in this dataset?
+
+```{r}
+nrow(candy)
+```
+
+> **Q2.** How many fruity candy types are in the dataset?
+
+```{r}
+sum(candy[, "fruity"])
+```
+
+## What is your favorate candy?
+
+> **Q3.** What is your favorite candy in the dataset and what is it’s winpercent value?
+
+```{r}
+candy["Haribo Gold Bears",]$winpercent
+```
+
+> **Q4.** What is the winpercent value for “Kit Kat”?
+
+```{r}
+candy["Kit Kat",]$winpercent
+```
+
+> **Q5.** What is the winpercent value for “Tootsie Roll Snack Bars”?
+
+```{r}
+candy["Tootsie Roll Snack Bars",]$winpercent
+```
+
+There is a useful skim() function in the skimr package that can help give you a quick overview of a given dataset. Let’s install this package and try it on our candy data.
+
+```{r}
+library("skimr")
+skim(candy)
+```
+
+> **Q6.** Is there any variable/column that looks to be on a different scale to the majority of the other columns in the dataset?
+
+**Ans:** Compared to the majority of variable/columns, the n_missing column 
+> **Q7.** What do you think a zero and one represent for the candy$chocolate column?
