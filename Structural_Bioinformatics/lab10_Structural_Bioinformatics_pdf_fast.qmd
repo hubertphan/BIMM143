@@ -1,0 +1,367 @@
+---
+title: "Structural Bioinformatics (Pt. 1)"
+author: "Hubert Phan (PID: A17663330)"
+format: pdf
+toc: true
+#prefer-html: true
+execute:
+  freeze: auto
+  cache: true
+---
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+# Global chunk defaults (keeps PDF renders cleaner)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+`%||%` <- function(x, y) if (!is.null(x)) x else y
+```
+
+
+## Introduction to the RCSB Protein Data Bank (PDB)
+
+### PDB statistics
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+
+# Read in the PDB csv
+pdb_data <- read.csv("Data Export Summary.csv")
+
+summary(pdb_data)
+```
+
+> **Q1:** What percentage of structures in the PDB are solved by X-Ray and Electron Microscopy.
+
+```{r}
+# Convert relevant columns to numeric and remove commas
+pdb_data$X.ray <- as.numeric(gsub(",", "", pdb_data$X.ray))
+pdb_data$EM    <- as.numeric(gsub(",", "", pdb_data$EM))
+pdb_data$Total <- as.numeric(gsub(",", "", pdb_data$Total))
+
+# Sum columns
+sum_xray <- sum(pdb_data$X.ray, na.rm = TRUE)
+sum_EM <- sum(pdb_data$EM, na.rm = TRUE)
+grandTotal <- sum(pdb_data$Total, na.rm = TRUE)
+
+propotion_xray <- (sum_xray/grandTotal) * 100
+proportion_EM <- (sum_EM/grandTotal) * 100
+
+propotion_xray
+proportion_EM
+```
+> **Q2:** What proportion of structures in the PDB are protein?
+
+```{r}
+# get protein only total
+protein_only <- pdb_data[pdb_data$Molecular.Type == "Protein (only)", "Total"]
+
+proportion_protein <- protein_only / grandTotal * 100
+proportion_protein
+```
+
+> **Q3:** Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB?
+
+**Ans:** There are 756 HIV-1 protease structures in the current PDB.
+
+### The PDB format
+
+Download the “PDB File” for the HIV-1 protease structure with the PDB identifier 1HSG. 
+
+## Visualizing the HIV-1 protease structure
+
+### Using Mol*
+
+![HIV-1 without ligand and water components](C:/Users/huber/Downloads/BIMM 143/Structural Bioinformatics/1HSG_no_ligandwater.png)
+
+### Getting to know HIV-Pr
+
+Let’s temporally toggle OFF/ON the display of water molecules and change the display representation of the Ligand to Spacefill (a.k.a VdW spheres). 
+
+![HIV-1 with: ligand spacefill, secondary structure coloring; without: water component](C:/Users/huber/Downloads/BIMM 143/Structural Bioinformatics/1HSG_ligandspace_2ndStrucColoring.png)
+
+### Delving deeper
+
+#### Cleaning up the display
+
+Turn off the display of these positions by clicking the eye” icon for the “Focus Surroundings (5A)” Components entry in the right side control panel.
+
+Now we can highlight a subset of the most important positions:
+
+* Using the top Sequence display select position Asp 25 (D25) in one of the chains.
+* Now activate so-called “Selection Mode” by clicking the Arrow icon (red box to the right side of the 3D viewer panel in the figure below).
+* Then select the two Asp 25 positions in the 3D structure.
+* Finally click the cube icon (blue box in below figure) and from the drop-down menu that appears select Representation Spacefill or Ball & Stick (whatever you prefer), then click +Create Component.
+
+![D25 A & B Chain](C:/Users/huber/Downloads/BIMM 143/Structural Bioinformatics/1HSG_D25.png)
+
+#### The important role of water
+
+> **Q4:** Water molecules normally have 3 atoms. Why do we see just one atom per water molecule in this structure?
+
+**Ans:** In molecular visualization software like Mol*, water is seen as one atom to simplify the complex molecule scene. The goal is to focus on the overall position and how water interacts with the biological molecule. Another reason could be that Hydrogen atoms are often invisible in X-ray crystallography data, resulting in water being represented as an oxygen atom.
+
+> **Q5:** There is a critical “conserved” water molecule in the binding site. Can you identify this water molecule? What residue number does this water molecule have
+
+There is a conserved water molecule in the binding site labeled HOH 308, and it corresponds to residue number 308 (HOH 308).
+
+> **Q6:** Generate and save a figure clearly showing the two distinct chains of HIV-protease along with the ligand. You might also consider showing the catalytic residues ASP 25 in each chain and the critical water (we recommend “Ball & Stick” for these side-chains). Add this figure to your Quarto document.
+
+![D25 chains and critical water with labels](C:/Users/huber/Downloads/BIMM 143/Structural Bioinformatics/1HSG_withd25Water_labels.png)
+
+## Introduction to Bio3D in R
+
+### Reading PDB file data into R
+
+Read and inspect the  on-line file with PDB ID 1HSG:
+
+```{r}
+#| warning: false
+library(bio3d)
+
+pdb <- read.pdb("1hsg")
+```
+
+To get a quick summary of the contents of the pdb object you just created you can issue the command print(pdb) or simply type pdb (which is equivalent in this case):
+
+```{r}
+pdb
+```
+
+> **Q7:** How many amino acid residues are there in this pdb object? 
+
+**Ans:** There are 198 amino acid residues.
+
+> **Q8:** Name one of the two non-protein residues? 
+
+**Ans:** HOH. This is water and there are 127 of these molecules.
+
+> **Q9:** How many protein chains are in this structure? 
+
+**Ans:** There are two protein chains, A and B.
+
+### Quick PDB visualization in R
+
+Install bio3dview and NGLVieweR packages. Load the respective packages and generate a quick NGL (webGL based) structure overview of a bio3d pdb class object with a number of simple defaults. 
+
+```{r}
+library(bio3dview)
+library(NGLVieweR)
+
+# visualization will not generate in pdf
+#view.pdb(pdb) |>
+#  setSpin()
+```
+
+You can also customize the display in many ways with minimal code. For example, lets custom color the chains and highlight some key residues as spacefill/vdw:
+
+```{r}
+# Select the important ASP 25 residue
+sele <- atom.select(pdb, resno=25)
+
+
+# visualization will not generate in pdf
+# and highlight them in spacefill representation
+#view.pdb(pdb, cols=c("navy","teal"), 
+#         highlight = sele,
+#         highlight.style = "spacefill") |>
+#  setRock()
+```
+
+### Predicting functional motions of a single structure
+
+Let’s read a new PDB structure of Adenylate Kinase and perform Normal mode analysis.
+
+```{r}
+adk <- read.pdb("6s36")
+adk
+```
+
+Normal mode analysis (NMA) is a structural bioinformatics method to predict protein flexibility and potential functional motions (a.k.a. conformational changes).
+
+```{r}
+# Perform flexiblity prediction
+m <- nma(adk)
+plot(m)
+```
+
+To view a “movie” of these predicted motions we can generate a molecular “trajectory” with the mktrj() function.
+
+```{r}
+mktrj(m, file="adk_m7.pdb")
+```
+
+## Comparative structure analysis of Adenylate Kinase
+
+### Setup
+
+> **Q10.** Which of the packages above is found only on BioConductor and not CRAN? 
+
+**Ans:** The msa package is found only in BioConductor and not CRAN.
+
+> **Q11.** Which of the above packages is not found on BioConductor or CRAN?: 
+
+**Ans:** The package that is not found on BioConductor or CRAN is bio3dview since we install it from Github.
+
+> **Q12.** True or False? Functions from the pak package can be used to install packages from GitHub and BitBucket? 
+
+**Ans:** TRUE
+
+### Search and retrieve ADK structures
+
+```{r}
+#| warning: false
+#| message: false
+library(bio3d)
+aa <- get.seq("1ake_A")
+
+aa
+```
+
+> **Q13.** How many amino acids are in this sequence, i.e. how long is this sequence? 
+
+**Ans:** There are 214 amino acids in the sequence.
+
+Now we can use this sequence as a query to BLAST search the PDB to find similar sequences and structures. The function plot.blast() facilitates the visualization and filtering of the Blast results. It will attempt to set a seed position to the point of largest drop-off in normalized scores (i.e. the biggest jump in E-values).
+
+```{r}
+# Blast or hmmer search 
+#b <- blast.pdb(aa)
+# Plot a summary of search results
+#hits <- plot.blast(b)
+# List out some 'top hits'
+#head(hits$pdb.id)
+
+hits <- NULL
+hits$pdb.id <- c('1AKE_A','6S36_A','6RZE_A','3HPR_A','1E4V_A','5EJE_A','1E4Y_A','3X2S_A','6HAP_A','6HAM_A','4K46_A','3GMT_A','4PZL_A')
+
+```
+
+
+We can now use function get.pdb() and pdbslit() to fetch and parse the identified structures.
+
+```{r}
+#| results: hide
+#| fig-show: hide
+#| message: false
+#| warning: false
+#| include: false
+#| echo: false
+
+
+# Download releated PDB files
+if (!dir.exists("pdbs")) dir.create("pdbs")
+
+# Download related PDB files once, then reuse
+if (file.exists("adk_pdb_files.rds")) {
+  files <- readRDS("adk_pdb_files.rds")
+} else {
+  files <- get.pdb(hits$pdb.id, path="pdbs", split=TRUE, gzip=TRUE)
+  saveRDS(files, "adk_pdb_files.rds")
+}
+```
+
+### Align and superpose structures
+
+```{r}
+#| results: hide
+#| fig-show: hide
+#| message: false
+#| warning: false
+#| include: false
+#| echo: false
+
+
+# Align releated PDBs
+# Align related PDBs once, then reuse
+if (file.exists("adk_pdbs_aln.rds")) {
+  pdbs <- readRDS("adk_pdbs_aln.rds")
+} else {
+  pdbs <- pdbaln(files, fit = TRUE, exefile="msa")
+  saveRDS(pdbs, "adk_pdbs_aln.rds")
+}
+```
+### Annotate collected PDB structures
+
+```{r}
+# Vector containing PDB database codes
+ids <- basename.pdb(pdbs$id)
+
+if (file.exists("adk_anno.rds")) {
+  anno <- readRDS("adk_anno.rds")
+} else {
+  anno <- pdb.annotate(ids)
+  saveRDS(anno, "adk_anno.rds")
+}
+unique(anno$source)
+
+anno
+```
+
+### Principal component analysis
+
+```{r}
+# Perform PCA
+pc.xray <- pca(pdbs)
+plot(pc.xray)
+```
+
+```{r}
+# Calculate RMSD
+rd <- rmsd(pdbs)
+
+# Structure-based clustering
+hc.rd <- hclust(dist(rd))
+grps.rd <- cutree(hc.rd, k=3)
+
+plot(pc.xray, 1:2, col="grey50", bg=grps.rd, pch=21, cex=1)
+```
+
+## Optional further visualization
+
+To visualize the major structural variations in the ensemble the function mktrj() can be used to generate a trajectory PDB file by interpolating along a give PC (eigenvector):
+
+```{r}
+# Visualize first principal component
+pc1 <- mktrj(pc.xray, pc=1, file="pc_1.pdb")
+```
+
+View these results in Mol*. We can also plot our main PCA results with ggplot:
+
+```{r}
+#Plotting results with ggplot2
+library(ggplot2)
+library(ggrepel)
+
+df <- data.frame(PC1=pc.xray$z[,1], 
+                 PC2=pc.xray$z[,2], 
+                 col=as.factor(grps.rd),
+                 ids=ids)
+
+p <- ggplot(df) + 
+  aes(PC1, PC2, col=col, label=ids) +
+  geom_point(size=2) +
+  geom_text_repel(max.overlaps = 20) +
+  theme(legend.position = "none")
+p
+```
+
+## Normal mode analysis [optional]
+
+Function nma() provides normal mode analysis (NMA) on both single structures (if given a singe PDB input object) or the complete structure ensemble (if provided with a PDBS input object). This facilitates characterizing and comparing flexibility profiles of related protein structures.
+
+```{r}
+#| warnings: False
+# NMA of all structures
+modes <- nma(pdbs)
+
+plot(modes, pdbs, col=grps.rd)
+```
+
+> **Q14.** What do you note about this plot? Are the black and colored lines similar or different? Where do you think they differ most and why?
+
+Overall, the black and colored lines are generally similar. This suggests that the proteins share similar structure and dynamics. The lines differ the most around the 40-60 and 130-160 residue regions. These regions most likely correspond to flexible surface loops that are not essential to maintaining general protein functionality. 
