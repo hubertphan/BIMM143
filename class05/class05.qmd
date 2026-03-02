@@ -1,0 +1,239 @@
+---
+title: "Class 05: Data Visualization with GGPLOT"
+author: "Hubert Phan (PID: A17663330)"
+format: pdf
+toc: true
+---
+
+
+## Background
+There are two ways to create visualizations in R: using base R functions or using the ggplot2 package. Data visualizations created with ggplot2 are often more aesthetically pleasing and easier to customize than those created with base R functions.
+
+This is an example of making a scatter plot of the cars dataset using base R functions and ggplot2:
+
+```{r}
+#| label: Load libraries and data
+#| warning: false
+#| message: false
+#| eval: true
+head(cars,3)
+```
+
+**Base R:**
+```{r}
+#| label: Base R plot
+#| fig-cap: "Base R plot of the cars dataset"
+#| warning: false
+plot(cars)
+```
+
+**ggplot2:**
+```{r}
+#| label: ggplot2 plot without dataset
+#| fig-cap: "example ggplot2 without setting dataset"
+#| warning: false
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot(cars)
+```
+
+Every ggplot needs atleast 3 things:
+
+- A dataset
+- Aesthetic mappings (aes)
+- Geometric objects (geoms)
+
+```{r}
+#| label: ggplot2 plot with dataset, aes, and geom
+#| fig-cap: "ggplot2 scatter plot example"
+#| warning: false
+library(ggplot2)
+ggplot(data = cars, aes(x = speed, y = dist)) +
+  geom_point()
+```
+
+
+> Q1. For which phases is data visualization important in our scientific workflows?
+
+**Ans:** Communication of Results, Exploratory Data Analysis (EDA), and Detection of outliers.
+
+>Q2. True of False? The ggplot2 package comes already installed with R?
+
+**Ans:** False
+
+## Common Plot Types
+
+>Q. Which plot types are typically NOT used to compare distributions of numeric variables? 
+
+**Ans:** Network graphs
+
+>Q. Which statement about data visualization with ggplot2 is incorrect?
+
+**Ans:** ggplot2 is the only way to create plots in R
+
+## Creating Scatter Plots
+
+>Q. Which geometric layer should be used to create scatter plots in ggplot2?
+
+**Ans:** geom_point()
+
+Note: These next questions refer to the ggplot scatter plot created from the cars dataset above.
+
+>Q. In your own RStudio can you add a trend line layer to help show the relationship between the plot variables with the geom_smooth() function?
+
+```{r}
+#| label: ggplot2 scatter plot with trend line
+#| fig-cap: "ggplot2 scatter plot with trend line"
+#| warning: false
+ggplot(data = cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth()
+```
+>Q. Argue with geom_smooth() to add a straight line from a linear model without the shaded standard error region?
+
+```{r}
+#| label: ggplot2 scatter plot with linear trend line
+#| fig-cap: "ggplot2 scatter plot with linear trend line"
+#| warning: false
+ggplot(data = cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+>Q. Can you finish this plot by adding various label annotations with the labs() function and changing the plot look to a more conservative “black & white” theme by adding the theme_bw() function?
+
+```{r}
+#| label: ggplot2 scatter plot with labels and theme
+#| fig-cap: "ggplot2 scatter plot with labels and black & white theme"
+#| warning: false
+ggplot(data = cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Stopping Distance vs. Speed of Cars",
+       x = "Speed (mph)",
+       y = "Stopping Distance (ft)") +
+  theme_bw()
+```
+
+## Gene Expression Plot
+Read the expression data from the class website:
+```{r}
+#| label: Load gene expression data
+#| warning: false
+#| message: false
+url <- "https://bioboot.github.io/bimm143_S20/class-material/up_down_expression.txt"
+genes <- read.delim(url)
+head(genes)
+```
+
+>Q. Use the nrow() function to find out how many genes are in this dataset. What is your answer? 
+
+```{r}
+#| label: Check number of rows
+#| warning: false
+nrow(genes)
+```
+
+>Q. Use the colnames() function and the ncol() function on the genes data frame to find out what the column names are (we will need these later) and how many columns there are. How many columns did you find?
+
+```{r}
+#| label: Check column names and number of columns
+#| warning: false
+colnames(genes)
+ncol(genes)
+```
+
+>Q. Use the table() function on the State column of this data.frame to find out how many ‘up’ regulated genes there are. What is your answer? 
+
+```{r}
+#| label: Check number of up regulated genes
+#| warning: false
+table(genes$State)
+```
+>Q. Using your values above and 2 significant figures. What fraction of total genes is up-regulated in this dataset?
+
+```{r}
+#| label: Calculate fraction of up regulated genes
+#| warning: false
+total_upreg <- table(genes$State)["up"]
+total_genes <- nrow(genes)
+fraction_upreg <- round(total_upreg / total_genes, 2)
+fraction_upreg
+```
+
+[First Expression Scatter Plot]{.underline} 
+```{r}
+#| label: First gene expression scatter plot
+#| fig-cap: "Gene expression scatter plot"
+ggplot(genes, aes(x = Condition1, y = Condition2)) +
+  geom_point()
+```
+[Second Expression Scatter Plot]{.underline} 
+```{r}
+#| label: Second gene expression scatter plot
+#| fig-cap: "Gene expression scatter plot colored by State"
+ggplot(genes, aes(x = Condition1, y = Condition2, color = State)) + 
+  geom_point()
+```
+[Third Expression Scatter Plot]{.underline} 
+```{r}
+#| label: Third gene expression scatter plot
+#| fig-cap: "Gene expression scatter plot with labels and theme"
+ggplot(genes, aes(x = Condition1, y = Condition2, color = State)) + 
+  geom_point() +
+  scale_color_manual(values = c("blue", "gray", "red")) +
+  labs(title = "Gene Expression Changes Upon Drug Treatment",
+       x = "Control (no drug)",
+       y = "Drug Treatment") +
+  theme_bw()
+```
+
+## Going Further
+Read the gapminder dataset:
+```{r}
+# File location online
+url <- "https://raw.githubusercontent.com/jennybc/gapminder/master/inst/extdata/gapminder.tsv"
+gapminder <- read.delim(url)
+head(gapminder)
+```
+Use dplyr to filter for the year 2007:
+```{r}
+#| label: Load dplyr and filter gapminder data
+#| warning: false
+#| message: false
+library(dplyr)
+gapminder2007 <- gapminder %>% filter(year == 2007)
+head(gapminder2007)
+```
+>Q. Complete the code below to produce a first basic scater plot of this gapminder_2007 dataset:
+
+```{r}
+#| label: Basic gapminder scatter plot
+#| fig-cap: "Gapminder 2007 scatter plot of GDP per capita vs Life Expectancy"
+ggplot(gapminder2007, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+>Q. Can you adapt the code you have learned thus far to reproduce our gapminder scatter plot for the year 1957? What do you notice about this plot is it easy to compare with the one for 2007?
+
+```{r}
+#| label: 1957 gapminder scatter plot
+#| fig-cap: "Gapminder scatter plot for 1957"
+gapminder_1957 <- gapminder %>% filter(year == 1957)
+ggplot(gapminder_1957, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(aes(color = continent, size = pop), alpha = 0.7) + 
+  scale_size_area(max_size = 15) 
+```
+>Q. Do the same steps above but include 1957 and 2007 in your input dataset for ggplot(). You should now include the layer facet_wrap(~year) to produce the following plot:
+
+```{r}
+#| label: Faceted gapminder scatter plot
+#| fig-cap: "Gapminder scatter plot faceted by year"
+gapminder_5707 <- gapminder %>% filter(year == 1957 | year == 2007)
+ggplot(gapminder_5707, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(aes(color = continent, size = pop), alpha = 0.7) + 
+  scale_size_area(max_size = 8) +
+  facet_wrap(~year)
+```
+
+
+
+
