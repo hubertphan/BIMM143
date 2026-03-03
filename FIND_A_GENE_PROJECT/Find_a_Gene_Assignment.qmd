@@ -243,7 +243,6 @@ Bootstrapping and tree rooting are optional. Use “simple phylogeny” online f
 or any respected phylogeny program (such as MEGA, PAUP, or Phylip). Paste an image
 of your Cladogram or tree output in your report.
 
-From "simple phylogeny":
 
 ```{r}
 #| fig-cap: "Phylogenetic Tree"
