@@ -1,0 +1,62 @@
+CLUSTAL O(1.2.4) multiple sequence alignment
+
+
+IL36G_HUMAN                    ------------------------------------------------------------	0
+Podarcis_cretensis             ------------------------------------------------------------	0
+Trionyx_triunguis              ------------------------------------------------------------	0
+Pelodiscus_sinensis            --------------------MVSRTDNGIRATSPLREGAAEEDSFPSQAPETSTDVGMGS	40
+Chelonia_mydas                 ------------------------------------------------------------	0
+Chelonoidis_abingdonii         ------------------------------------------------------------	0
+Emys_orbicularis               ------------------------------------------------------------	0
+Trachemys_scripta_elegans      MVSSLLLALLLTCCSFDCFSSQSMTNNGIWATPLPGEDETEEDAFLSQVRKTSTDLGLDS	60
+Dromiciops_gliroides           ------------------------------------------------------------	0
+Myotis_myotis                  ------------------------------------------------------------	0
+                                                                                           
+
+IL36G_HUMAN                    -------------------------------MRGTPGDA----------DGGGRAV----	15
+Podarcis_cretensis             -------------------------------MEKVDTETLREKPHKMTVDQKMRDLFHHF	29
+Trionyx_triunguis              ------------------------------------------------------------	0
+Pelodiscus_sinensis            SRPAPPQDTAGT--------------------EPWPGAGPRPDSWAQPSNRDLVELFDEF	80
+Chelonia_mydas                 ------------------------------------------------------------	0
+Chelonoidis_abingdonii         ------------------------MTSTGHTSPAWPGAGRTPGPYSQPDNSNLVDLFNKF	36
+Emys_orbicularis               ------------------------MTGTGHTTPARPGAGRTPGSYSQPGNSNLVNLFNEF	36
+Trachemys_scripta_elegans      NDPEGPVSAAGSASTHTPPCSHQDMTGTGNMSPAQPGAGRTPGPYSQPGNSNLVNLFNEF	120
+Dromiciops_gliroides           ------------------------------------------------------------	0
+Myotis_myotis                  ------------------------------------------------------------	0
+                                                                                           
+
+IL36G_HUMAN                    ---------YQSMCKPITGTINDLNQQVWTLQGQNLVAVPRSD--SVTPVTVAVITCKYP	64
+Podarcis_cretensis             PKPDHSKFPPISLDRPWLYRIWDINQKFLFLKNNMLVAAPKDG--NSPDYLVAVT----P	83
+Trionyx_triunguis              ------------------------------------------------------------	0
+Pelodiscus_sinensis            LNQKQQ--FIPSVPKHSLFTLRDTNQRVIRRLHKQLVATPQTS--NAPPEKISVV----P	132
+Chelonia_mydas                 ----M---SISDIPANAA-DAGVLAQANVPRDQEELRLSRDSC--SVFPEKTSVV----P	46
+Chelonoidis_abingdonii         FSQRP---AIMTVPGPSLFTLRDTSQKVVRCHHNRLMASPQTA--NTLPEKISVV----P	87
+Emys_orbicularis               FKQRP---TIMAVPGPSLFTLRDTSQKVVRYHHNRLVASPQTA--NAPPEKISVV----P	87
+Trachemys_scripta_elegans      FKQGP---TIMAVPRPSLFTLRDTSQKVVRCHHNHLVASPQTA--NAPPEKISVV----P	171
+Dromiciops_gliroides           ----------MVLQKALCFRMKDAALKVIYVQNNQLLARRVQAGKPIDGEEISVV----P	46
+Myotis_myotis                  ----------MVLSGALCFRMKDAALKVLYLQDNQLLAGGVHAGKAVKGEEISVV----P	46
+                                                                                           
+
+IL36G_HUMAN                    EALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFYRAKT	124
+Podarcis_cretensis             NRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFCKSG	143
+Trionyx_triunguis              GQWADGRSLPPSLQ---AVSPFLIGLS-HAPPPHPQDKEIMDLYQNSQEAKRFTFTCMAT	56
+Pelodiscus_sinensis            NQFLDPSNFPIIMGIDNGTRCLSCGTS-APPTLMLEDKEIMALYQNSQEAKRFTFTCVAT	191
+Chelonia_mydas                 NQFMDPSHFPIVMGIDGGLCCLSCSTS-AQPTLMLEDKKIMDLYQNSWEAERFTFTCSAS	105
+Chelonoidis_abingdonii         NQFMDPSHFPIIMGIDGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT	146
+Emys_orbicularis               NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSREAKRFTFTCSAT	146
+Trachemys_scripta_elegans      NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT	230
+Dromiciops_gliroides           NRSLDAKRSPVILGLEGGTQCLSVGIA-QEPVLQIEHKNIMDLYRSKEESKSFTFYMWDT	105
+Myotis_myotis                  NRFLDDSLSPVILGVQGGSQCLSCGMG-QEPTLKLEPVDIMELYRSPKDSRGFTFYRRDT	105
+                                   :    *  :        :        *    :   ** ** .    . * *     
+
+IL36G_HUMAN                    GR--TSTLESVAFPDWFIASSK-RDQPIILTSELGKSY----NTAFELNIND-	169
+Podarcis_cretensis             SSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGA-----EITQFYFDKVKD	191
+Trionyx_triunguis              GS--TRRFESVAFPGWFLSTSPKDGQPLRVTNISGEA----EIINFYFKKM--	101
+Pelodiscus_sinensis            GS--TRRFESVAFPGWFLSTSPKDGQPVRVTNISGEA----EIVNFYFKKM--	236
+Chelonia_mydas                 SS--TLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA----EITNFYFKKV--	150
+Chelonoidis_abingdonii         GS--THRFESVAFPGWYLSTSPRNDQPLQVTNRLGEA----EITNFYFKKV--	191
+Emys_orbicularis               GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--	191
+Trachemys_scripta_elegans      GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--	275
+Dromiciops_gliroides           GL--TSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS--ESVITDFYFHQCA-	153
+Myotis_myotis                  GL--TSRFESAAFPGWFLCTVPEADQPLRLSQLPGDASWDHPIMDFYFQQCD-	155
+                               .   *  :* .*:*.*::.:     :*: ::              * :.    

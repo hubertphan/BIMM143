@@ -1,0 +1,319 @@
+---
+title: "Find a Gene Assignment"
+author: "Hubert Phan (PID: A17663330)"
+format:
+  pdf:
+    geometry: margin=1in
+    highlight-style: kate
+---
+
+> **Q1.** Tell me the name of a protein you are interested in. Include the species, accession number  and known function. This can be a human protein or a protein from any other species as long as  it's function is known.  
+If you do not have a favorite protein, select human RBP4 or KIF11. Do not use beta globin as  this is in the worked example report that I provide you with online. 
+
+**Name:** Interleukin-36 gamma (IL36G)
+
+**Species:** Homo sapiens
+
+**Accession:** Q9NZH8
+
+
+**Function:** Interleukin-36 gamma (IL36G) plays a role in skin inflammation and issume signaling. IL36G is associated in skin disorders such as psoriasis and dandruff.
+
+> **Q2.** Perform a BLAST search against a DNA database, such as a database consisting of  genomic DNA or ESTs. The BLAST server can be at NCBI or elsewhere. Include details of the  BLAST method used, database searched and any limits applied (e.g. Organism).  
+
+**Method:** TBLASTN search against reptilia nt
+
+**Database:** Nucleotide collection (nt)
+
+**Organsim:** Reptilia (taxid:8459) 
+
+> Also include the output of that BLAST search in your document. If appropriate, change the font  to Courierdd size 10 so that the results are displayed neatly. You can also screen capture a  BLAST output (e.g. alt print screen on a PC or on a MAC press ⌘-shift-4. The pointer becomes  a bulls eye. Select the area you wish to capture and release. The image is saved as a file called  Screen Shot [].png in your Desktop directory). It is not necessary to print out all of the  blast results if there are many pages.  
+
+![TBLASTN QUERY](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLAST_Query.png)
+
+> On the BLAST results, clearly indicate a match that represents a protein sequence,  encoded from some DNA sequence, that is homologous to your query protein. I need to  be able to inspect the pairwise alignment you have selected, including the E value and  score. It should be labeled a "genomic clone" or "mRNA sequence", etc. - but include no  functional annotation.  
+
+**Chosen Match:** Accession OZ346534.1, Trionyx triunguis genome assembly. See alignment details below.
+
+![TBLASTN RESULTS](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLAST_Results.png)
+
+![Alignment Details](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/Alignment.png)
+
+>In general, [Q2] is the most difficult for students because it requires you to have a “feel”  for how to interpret BLAST results. You need to distinguish between a perfect match to  your query (i.e. a sequence that is not “novel”), a near match (something that might be  “novel”, depending on the results of [Q4]), and a non-homologous result.  
+If you are having trouble finding a novel gene try restricting your search to an organism  that is poorly annotated.  
+
+> **Q3.** Gather information about this “novel” protein. At a minimum, show me the protein  sequence of the “novel” protein as displayed in your BLAST results from [Q2] as FASTA  format (you can copy and paste the aligned sequence subject lines from your BLAST  result page if necessary) or translate your novel DNA sequence using a tool called  EMBOSS Transeq at the EBI. Don’t forget to translate all six reading frames; the ORF  (open reading frame) is likely to be the longest sequence without a stop codon. It may  not start with a methionine if you don’t have the complete coding region. Make sure the  sequence you provide includes a header/subject line and is in traditional FASTA format. 
+
+The genomic DNA region surrounding the tblastn hit in Trionyx triunguis was extracted from the genome assembly and expanded beyond the aligned coordinates to capture potential coding sequence. The sequence was then translated in all six reading frames using EMBOSS Transeq. The longest open reading frame (ORF) without a stop codon was identified by examining for conserved motifs observed in the original BLAST alignment. This segment is the protein sequence used for downstream BLASTP analysis to assess sequence novelty.
+
+**Chosen Sequence:**
+
+```fasta
+>Trionyx_triunguis_tblastn_hit_translated_fragment frame_2
+GQWADGRSLPPSLQAVSPFLIGLSHAPPPHPQDKEIMDLYQNSQEAKRFTFTCMATGSTRRFESVAFPGW
+FLSTSPKDGQPLRVTNISGEAEIINFYFKKM
+```
+
+>Here, tell me the name of the novel protein, and the species from which it derives. It is  very unlikely (but still definitely possible) that you will find a novel gene from an  organism such as S. cerevisiae, human or mouse, because those genomes have  already been thoroughly annotated. It is more likely that you will discover a new gene in  a genome that is currently being sequenced, such as bacteria or plants or protozoa. 
+
+**Name:** IL-1 family-like protein
+
+**Species:** Trionyx triunguis (African softshell turtle)
+
+**Lineage:** Eukaryota; Metazoa; Chordata; Reptilia; Testudines; Trionychidae; Trionyx
+
+> **Q4.** For the purposes of this project, “novel” is defined as follows. Take the protein sequence (your answer to [Q3]) and use it as a query in a BLASTP search of the nr database at NCBI.
+
+- If there is a match with **100% amino acid identity** to a protein in the database **from the same species**, then your protein is **NOT novel** (even if the match is to a protein with a name such as “unknown”). Someone has already found and annotated this sequence and assigned it an accession number.
+- If the **top match reported has less than 100% identity**, then it is likely that your protein is **novel**, and you have succeeded.
+- If there is a match with **100% identity**, but to a **different species** than the one you started with, then you have likely succeeded in finding a novel gene.
+- If there are **no database matches** to the original query from [Q1], this indicates that you have **partially succeeded**: yes, you may have found a new gene, but no, it is not actually homologous to the original query. You should probably start over.
+
+
+**Details:**
+
+A BLASTP search against the nr database yielded a top hit protein from *Pelodiscus sinensis* (Chinese softshell turtle).
+
+Below are screenshots of the BLASTP query, BLASTP results, and alignment details of the top hit.
+
+![BLASTP Query](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLASTP_Query.png)
+
+![BLASTP Results](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLASTP_Results.png)
+
+![Alignment Details](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/Pelodiscus_sinensis_Alignment.png)
+
+> [Q5] Generate a multiple sequence alignment with your novel protein, your original
+query protein, and a group of other members of this family from different species. A
+typical number of proteins to use in a multiple sequence alignment for this assignment
+purpose is a minimum of 5 and a maximum of 20 - although the exact number is up to
+you. Include the multiple sequence alignment in your report. Use Courier font with a size
+appropriate to fit page width.
+Side-note: Indicate your sequence in the alignment by choosing an appropriate name
+for each sequence in the input unaligned sequence file (i.e. edit the sequence file so
+that the species, or short common, names (rather than accession numbers) display in
+the output alignment and in the subsequent answers below). The goal in this step is to
+create an interesting an alignment for building a phylogenetic tree that illustrates
+species divergence. 
+
+**Re-labeled sequences for alignment:**
+
+```{=latex}
+\begingroup
+\footnotesize
+```
+
+```{.verbatim}
+>Trionyx_triunguis IL-1 family-like protein frame_2 (novel protein)
+GQWADGRSLPPSLQAVSPFLIGLSHAPPPHPQDKEIMDLYQNSQEAKRFTFTCMATGSTRRFESVAFPGW
+FLSTSPKDGQPLRVTNISGEAEIINFYFKKM
+
+>IL36G_HUMAN
+MRGTPGDADGGGRAVYQSMCKPITGTINDLNQQVWTLQGQNLVAVPRSDSVTPVTVAVIT 
+CKYPEALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFY 
+RAKTGRTSTLESVAFPDWFIASSKRDQPIILTSELGKSYNTAFELNIND
+
+>Pelodiscus_sinensis XP_075766824.1 interleukin-1 family member 10-like isoform X4
+MVSRTDNGIRATSPLREGAAEEDSFPSQAPETSTDVGMGSSRPAPPQDTAGTEPWPGAGPRPDSWAQPSN
+RDLVELFDEFLNQKQQFIPSVPKHSLFTLRDTNQRVIRRLHKQLVATPQTSNAPPEKISVVPNQFLDPSN
+FPIIMGIDNGTRCLSCGTSAPPTLMLEDKEIMALYQNSQEAKRFTFTCVATGSTRRFESVAFPGWFLSTS
+PKDGQPVRVTNISGEAEIVNFYFKKM
+
+>Chelonoidis_abingdonii XP_032626992.1 interleukin-36 receptor antagonist protein-like
+MTSTGHTSPAWPGAGRTPGPYSQPDNSNLVDLFNKFFSQRPAIMTVPGPSLFTLRDTSQKVVRCHHNRLM
+ASPQTANTLPEKISVVPNQFMDPSHFPIIMGIDGGTRCLSCGTSAQPTLMLEDKKIMDLYQNSQEAKRFT
+FTCSATGSTHRFESVAFPGWYLSTSPRNDQPLQVTNRLGEAEITNFYFKKV
+
+>Emys_orbicularis XP_065254442.1 interleukin-36 receptor antagonist protein-like
+MTGTGHTTPARPGAGRTPGSYSQPGNSNLVNLFNEFFKQRPTIMAVPGPSLFTLRDTSQKVVRYHHNRLV
+ASPQTANAPPEKISVVPNQFMDPSHFPIIMGINGGTRCLSCGTSAQPTLMLEDKKIMDLYQNSREAKRFT
+FTCSATGSTLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEAEITNFYFKKV
+
+>Trachemys_scripta_elegans XP_034615290.1 interleukin-36 receptor antagonist protein-like isoform X2
+MVSSLLLALLLTCCSFDCFSSQSMTNNGIWATPLPGEDETEEDAFLSQVRKTSTDLGLDSNDPEGPVSAA
+GSASTHTPPCSHQDMTGTGNMSPAQPGAGRTPGPYSQPGNSNLVNLFNEFFKQGPTIMAVPRPSLFTLRD
+TSQKVVRCHHNHLVASPQTANAPPEKISVVPNQFMDPSHFPIIMGINGGTRCLSCGTSAQPTLMLEDKKI
+MDLYQNSQEAKRFTFTCSATGSTLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEAEITNFYFKKV
+
+>Chelonia_mydas XP_043392104.1 interleukin-36 receptor antagonist protein
+MSISDIPANAADAGVLAQANVPRDQEELRLSRDSCSVFPEKTSVVPNQFMDPSHFPIVMGIDGGLCCLSC
+STSAQPTLMLEDKKIMDLYQNSWEAERFTFTCSASSSTLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA
+EITNFYFKKV
+
+>Podarcis_cretensis XP_079811393.1 interleukin-36 receptor antagonist protein-like isoform 1
+MEKVDTETLREKPHKMTVDQKMRDLFHHFPKPDHSKFPPISLDRPWLYRIWDINQKFLFLKNNMLVAAPK
+DGNSPDYLVAVTPNRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFC
+KSGSSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGAEITQFYFDKVKD
+
+>Dromiciops_gliroides XP_043845630.1 interleukin-36 receptor antagonist protein
+MVLQKALCFRMKDAALKVIYVQNNQLLARRVQAGKPIDGEEISVVPNRSLDAKRSPVILGLEGGTQCLSV
+GIAQEPVLQIEHKNIMDLYRSKEESKSFTFYMWDTGLTSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS
+ESVITDFYFHQCA
+
+>Myotis_myotis XP_036167553.1 interleukin-36 receptor antagonist protein
+MVLSGALCFRMKDAALKVLYLQDNQLLAGGVHAGKAVKGEEISVVPNRFLDDSLSPVILGVQGGSQCLSC
+GMGQEPTLKLEPVDIMELYRSPKDSRGFTFYRRDTGLTSRFESAAFPGWFLCTVPEADQPLRLSQLPGDA
+SWDHPIMDFYFQQCD
+```
+
+```{=latex}
+\endgroup
+```
+
+**MSA:**
+
+
+```{=latex}
+\begingroup
+\footnotesize
+```
+
+```{.verbatim}
+CLUSTAL O(1.2.4) multiple sequence alignment
+
+
+IL36G_HUMAN                    ------------------------------------------------------------	0
+Podarcis_cretensis             ------------------------------------------------------------	0
+Trionyx_triunguis              ------------------------------------------------------------	0
+Pelodiscus_sinensis            --------------------MVSRTDNGIRATSPLREGAAEEDSFPSQAPETSTDVGMGS	40
+Chelonia_mydas                 ------------------------------------------------------------	0
+Chelonoidis_abingdonii         ------------------------------------------------------------	0
+Emys_orbicularis               ------------------------------------------------------------	0
+Trachemys_scripta_elegans      MVSSLLLALLLTCCSFDCFSSQSMTNNGIWATPLPGEDETEEDAFLSQVRKTSTDLGLDS	60
+Dromiciops_gliroides           ------------------------------------------------------------	0
+Myotis_myotis                  ------------------------------------------------------------	0
+                                                                                           
+
+IL36G_HUMAN                    -------------------------------MRGTPGDA----------DGGGRAV----	15
+Podarcis_cretensis             -------------------------------MEKVDTETLREKPHKMTVDQKMRDLFHHF	29
+Trionyx_triunguis              ------------------------------------------------------------	0
+Pelodiscus_sinensis            SRPAPPQDTAGT--------------------EPWPGAGPRPDSWAQPSNRDLVELFDEF	80
+Chelonia_mydas                 ------------------------------------------------------------	0
+Chelonoidis_abingdonii         ------------------------MTSTGHTSPAWPGAGRTPGPYSQPDNSNLVDLFNKF	36
+Emys_orbicularis               ------------------------MTGTGHTTPARPGAGRTPGSYSQPGNSNLVNLFNEF	36
+Trachemys_scripta_elegans      NDPEGPVSAAGSASTHTPPCSHQDMTGTGNMSPAQPGAGRTPGPYSQPGNSNLVNLFNEF	120
+Dromiciops_gliroides           ------------------------------------------------------------	0
+Myotis_myotis                  ------------------------------------------------------------	0
+                                                                                           
+
+IL36G_HUMAN                    ---------YQSMCKPITGTINDLNQQVWTLQGQNLVAVPRSD--SVTPVTVAVITCKYP	64
+Podarcis_cretensis             PKPDHSKFPPISLDRPWLYRIWDINQKFLFLKNNMLVAAPKDG--NSPDYLVAVT----P	83
+Trionyx_triunguis              ------------------------------------------------------------	0
+Pelodiscus_sinensis            LNQKQQ--FIPSVPKHSLFTLRDTNQRVIRRLHKQLVATPQTS--NAPPEKISVV----P	132
+Chelonia_mydas                 ----M---SISDIPANAA-DAGVLAQANVPRDQEELRLSRDSC--SVFPEKTSVV----P	46
+Chelonoidis_abingdonii         FSQRP---AIMTVPGPSLFTLRDTSQKVVRCHHNRLMASPQTA--NTLPEKISVV----P	87
+Emys_orbicularis               FKQRP---TIMAVPGPSLFTLRDTSQKVVRYHHNRLVASPQTA--NAPPEKISVV----P	87
+Trachemys_scripta_elegans      FKQGP---TIMAVPRPSLFTLRDTSQKVVRCHHNHLVASPQTA--NAPPEKISVV----P	171
+Dromiciops_gliroides           ----------MVLQKALCFRMKDAALKVIYVQNNQLLARRVQAGKPIDGEEISVV----P	46
+Myotis_myotis                  ----------MVLSGALCFRMKDAALKVLYLQDNQLLAGGVHAGKAVKGEEISVV----P	46
+                                                                                           
+
+IL36G_HUMAN                    EALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFYRAKT	124
+Podarcis_cretensis             NRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFCKSG	143
+Trionyx_triunguis              GQWADGRSLPPSLQ---AVSPFLIGLS-HAPPPHPQDKEIMDLYQNSQEAKRFTFTCMAT	56
+Pelodiscus_sinensis            NQFLDPSNFPIIMGIDNGTRCLSCGTS-APPTLMLEDKEIMALYQNSQEAKRFTFTCVAT	191
+Chelonia_mydas                 NQFMDPSHFPIVMGIDGGLCCLSCSTS-AQPTLMLEDKKIMDLYQNSWEAERFTFTCSAS	105
+Chelonoidis_abingdonii         NQFMDPSHFPIIMGIDGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT	146
+Emys_orbicularis               NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSREAKRFTFTCSAT	146
+Trachemys_scripta_elegans      NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT	230
+Dromiciops_gliroides           NRSLDAKRSPVILGLEGGTQCLSVGIA-QEPVLQIEHKNIMDLYRSKEESKSFTFYMWDT	105
+Myotis_myotis                  NRFLDDSLSPVILGVQGGSQCLSCGMG-QEPTLKLEPVDIMELYRSPKDSRGFTFYRRDT	105
+                                   :    *  :        :        *    :   ** ** .    . * *     
+
+IL36G_HUMAN                    GR--TSTLESVAFPDWFIASSK-RDQPIILTSELGKSY----NTAFELNIND-	169
+Podarcis_cretensis             SSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGA-----EITQFYFDKVKD	191
+Trionyx_triunguis              GS--TRRFESVAFPGWFLSTSPKDGQPLRVTNISGEA----EIINFYFKKM--	101
+Pelodiscus_sinensis            GS--TRRFESVAFPGWFLSTSPKDGQPVRVTNISGEA----EIVNFYFKKM--	236
+Chelonia_mydas                 SS--TLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA----EITNFYFKKV--	150
+Chelonoidis_abingdonii         GS--THRFESVAFPGWYLSTSPRNDQPLQVTNRLGEA----EITNFYFKKV--	191
+Emys_orbicularis               GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--	191
+Trachemys_scripta_elegans      GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--	275
+Dromiciops_gliroides           GL--TSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS--ESVITDFYFHQCA-	153
+Myotis_myotis                  GL--TSRFESAAFPGWFLCTVPEADQPLRLSQLPGDASWDHPIMDFYFQQCD-	155
+                              .   *  :* .*:*.*::.:     :*: ::              * :.    
+```
+
+```{=latex}
+\endgroup
+```
+
+The multiple sequence alignment demonstrates that the novel Trionyx triunguis fragment clusters with IL36RN-like proteins across reptiles and mammals. Highly conserved motifs including IMDLYQNSQEAKRFTFTC and FESVAFPGWFLSTSPK are shared with IL36RN orthologs but differ from IL36G, indicating that the novel sequence is most closely related to the IL-36 receptor antagonist subgroup of the IL-1 family.
+
+> [Q6] Create a phylogenetic tree, using either a parsimony or distance-based approach.
+Bootstrapping and tree rooting are optional. Use “simple phylogeny” online from the EBI
+or any respected phylogeny program (such as MEGA, PAUP, or Phylip). Paste an image
+of your Cladogram or tree output in your report.
+
+From "simple phylogeny":
+
+```{r}
+#| fig-cap: "Phylogenetic Tree"
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ape)
+
+newick <- "((((((
+IL36G_HUMAN:0.37636,Podarcis_cretensis:0.29849):0.00806,
+(Dromiciops_gliroides:0.19588,Myotis_myotis:0.16360):0.11954):0.11758,
+(Trionyx_triunguis:0.17553,Pelodiscus_sinensis:0.12150):0.03569):0.04032,
+Chelonia_mydas:0.19093):0.06741,
+Chelonoidis_abingdonii:0.04874):0.02194,
+Emys_orbicularis:0.02341,
+Trachemys_scripta_elegans:0.02895);"
+
+tree <- read.tree(text = newick)
+
+# Extract terminal edge lengths
+tip_edges <- which(tree$edge[,2] <= Ntip(tree))
+tip_lengths <- tree$edge.length[tip_edges]
+
+# Append lengths to labels
+tree$tip.label <- paste0(tree$tip.label, " ", round(tip_lengths, 5))
+
+plot(tree,
+     use.edge.length = TRUE,
+     cex = 0.8,
+     no.margin = TRUE)
+
+add.scale.bar()
+
+```
+
+
+> [Q7] Generate a sequence identity based heatmap of your aligned sequences using R.
+If necessary convert your sequence alignment to the ubiquitous FASTA format (Seaview
+can read in clustal format and “Save as” FASTA format for example). Read this FASTA
+format alignment into R with the help of functions in the Bio3D package. Calculate a
+sequence identity matrix (again using a function within the Bio3D package). Then
+generate a heatmap plot and add to your report. Do make sure your labels are visible
+and not cut at the figure margins.
+
+![Clustered Heatmap](Q7_identity_heatmap_clustered.png)
+
+
+>[Q8] Using R/Bio3D (or an online blast server if you prefer), search the main protein
+structure database for the most similar atomic resolution structures to your aligned
+sequences.
+List the top 3 unique hits (i.e. not hits representing different chains from the same
+structure) along with their Evalue and sequence identity to your query. Please also add
+annotation details of these structures. For example include the annotation terms PDB
+identifier (structureId), Method used to solve the structure (experimentalTechnique),
+resolution (resolution), and source organism (source).
+HINT: You can use a single sequence from your alignment or generate a consensus
+sequence from your alignment using the Bio3D function consensus(). The Bio3D
+functions blast.pdb(), plot.blast() and pdb.annotate() are likely to be of most relevance
+for completing this task. Note that the results of blast.pdb() contain the hits PDB
+identifier (or pdb.id) as well as Evalue and identity. The results of pdb.annotate() contain
+the other annotation terms noted above.
+Note that if your consensus sequence has lots of gap positions then it will be better to
+use an original sequence from the alignment for your search of the PDB. In this case
+you could chose the sequence with the highest identity to all others in your alignment by
+calculating the row-wise maximum from your sequence identity matrix.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#out
+```
