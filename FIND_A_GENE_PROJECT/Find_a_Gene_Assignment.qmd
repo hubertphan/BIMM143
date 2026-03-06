@@ -294,12 +294,14 @@ and not cut at the figure margins.
 >[Q8] Using R/Bio3D (or an online blast server if you prefer), search the main protein
 structure database for the most similar atomic resolution structures to your aligned
 sequences.
-List the top 3 unique hits (i.e. not hits representing different chains from the same
+
+>List the top 3 unique hits (i.e. not hits representing different chains from the same
 structure) along with their Evalue and sequence identity to your query. Please also add
 annotation details of these structures. For example include the annotation terms PDB
 identifier (structureId), Method used to solve the structure (experimentalTechnique),
 resolution (resolution), and source organism (source).
-HINT: You can use a single sequence from your alignment or generate a consensus
+
+>HINT: You can use a single sequence from your alignment or generate a consensus
 sequence from your alignment using the Bio3D function consensus(). The Bio3D
 functions blast.pdb(), plot.blast() and pdb.annotate() are likely to be of most relevance
 for completing this task. Note that the results of blast.pdb() contain the hits PDB
@@ -314,5 +316,90 @@ calculating the row-wise maximum from your sequence identity matrix.
 #| echo: false
 #| message: false
 #| warning: false
-#out
+
+suppressWarnings(
+  suppressPackageStartupMessages({
+    library(bio3d)
+    library(knitr)
+    #library(kableExtra)
+  })
+)
+
+library(bio3d)
+library(dplyr)
+library(knitr)
+##library(kableExtra)
+
+# --- INPUT: aligned FASTA from Q7
+aln <- read.fasta("fa_MSA.fasta")
+
+# Pairwise identity matrix
+idmat <- seqidentity(aln$ali)
+diag(idmat) <- NA
+avg_id <- rowMeans(idmat, na.rm = TRUE)
+
+best_idx <- which.max(avg_id)
+seq_vec <- aln$ali[best_idx, ]
+query_seq <- paste0(seq_vec[seq_vec != "-"], collapse = "")
+
+# --- BLAST query against PDB
+bl <- readRDS("blast_pdb_result.rds")
+hits <- bl$hit.tbl
+
+stopifnot(all(c("pdb.id", "evalue", "identity") %in% colnames(hits)))
+
+# --- Deduplicate by 4-letter PDB ID
+hits$ID <- toupper(substr(hits$pdb.id, 1, 4))
+hits <- hits[order(hits$evalue, -hits$identity), ]
+top3 <- hits[!duplicated(hits$ID), ][1:3, c("ID", "evalue", "identity")]
+
+# --- Fetch annotations
+ann <- pdb.annotate(top3$ID)
+ann_df <- as.data.frame(ann, stringsAsFactors = FALSE)
+
+# Inspect if needed
+# print(ann_df)
+# colnames(ann_df)
+
+# Standardize the annotation ID column
+if ("structureId" %in% colnames(ann_df)) {
+  ann_df$ID <- toupper(ann_df$structureId)
+} else if ("pdb.id" %in% colnames(ann_df)) {
+  ann_df$ID <- toupper(substr(ann_df$pdb.id, 1, 4))
+} else {
+  stop("Could not find a structure ID column in pdb.annotate() output.")
+}
+
+# Keep only one annotation row per ID
+ann_df <- ann_df[!duplicated(ann_df$ID), ]
+
+# Helper for flexible column extraction
+pick_existing_col <- function(df, candidates) {
+  nm <- candidates[candidates %in% colnames(df)][1]
+  if (is.na(nm)) return(rep(NA, nrow(df)))
+  df[[nm]]
+}
+
+ann_clean <- data.frame(
+  ID = ann_df$ID,
+  Technique = toupper(pick_existing_col(ann_df, c("experimentalTechnique", "technique", "expMethod"))),
+  Resolution = suppressWarnings(round(as.numeric(pick_existing_col(ann_df, c("resolution", "res", "Resolution"))), 2)),
+  Source = pick_existing_col(ann_df, c("source", "sourceOrganism", "organism", "src")),
+  stringsAsFactors = FALSE
+)
+
+# --- Join annotation back to BLAST hits by ID
+out <- top3 %>%
+  left_join(ann_clean, by = "ID") %>%
+  transmute(
+    ID = ID,
+    Technique = Technique,
+    Resolution = Resolution,
+    Source = Source,
+    Evalue = signif(evalue, 3),
+    Identity = round(identity, 1)
+  )
+
+out
 ```
+
