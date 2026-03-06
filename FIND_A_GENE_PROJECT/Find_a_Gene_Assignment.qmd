@@ -421,11 +421,35 @@ conserved). Note that pLDDT score is contained in the B-factor column of your PD
 downloaded file. Please use a white or transparent background for your figure (i.e. not
 the default black in PyMol/VMD/Chimera etc.).
 
-::: {#fig-q9 layout-ncol=2}
+
 ![Spacefill Representation](novel_spacefill.png){fig-subcap="Spacefill representation" width=100%}
 
 ![Base Representation](novel_base.png){fig-subcap="Base cartoon representation" width=100%}
 
 AlphaFold model shown as spacefill-highlighted and base cartoon representations.
-:::
+
+
+
+>[Q10] (i) Using your computed structure model (or your closest homologue of known
+structure from the PDB) predict and locate potential small molecule binding sites using
+the CASTpFold server ( https://cfold.bme.uic.edu/castpfold/ ). Provide an image or
+screen-shot of your largest predicted pockets “negative volume” and provide it’s area
+and volume.
+
+![](novel_neg_Volume.png)
+
+The largest pocket by negative volume was Pocket 1, with a surface area of 255.621 Å² and a volume of 504.623 Å³.
+
+>(ii) Perform a “Target” search of ChEMBEL ( https://www.ebi.ac.uk/chembl/ ) with your
+novel sequence. Are there any Target Associated Assays and ligand efficiency data
+reported that may be useful starting points for exploring potential inhibition of your novel
+protein? If there are no assays listed here simply list “non available as of [date]”.
+
+
+>(iii) Briefly discuss (100 words max) the druggability of your novel protein based on:
+- Presence of well-defined pockets (output of tools like CASTpFold),
+- Existence of known inhibitors for related proteins (your search of ChEMBEL),
+- Conservation of binding sites across homologs (your conservation analysis in Q10),
+- Potential therapeutic applications if this protein were targeted (you can use ChatGPT,
+Claude etc. backed up by your reading of the literature here).
 
