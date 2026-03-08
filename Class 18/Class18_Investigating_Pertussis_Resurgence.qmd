@@ -174,3 +174,144 @@ meta <- inner_join(specimen, subject)
 dim(meta)
 head(meta)
 ```
+
+> Q10. Now using the same procedure join meta with titer data so we can further analyze this data in terms of time of visit aP/wP, male/female etc.
+
+```{r,message=FALSE,warning=FALSE}
+abdata <- inner_join(titer, meta)
+dim(abdata)
+```
+
+> Q11. How many specimens (i.e. entries in abdata) do we have for each isotype?
+
+```{r}
+table(abdata$isotype)
+```
+
+> Q12. What are the different $dataset values in abdata and what do you notice about the number of rows for the most “recent” dataset?
+
+```{r}
+table(abdata$dataset)
+```
+**Ans:** There are four different datasets. The most recent dataset has the fewest rows. This may be due to incomplete data reporting, or changes in data reporting. Thus, the decrease in rows does not definitively conclude that there is a true decrease in vaccinations.
+
+## 4. Examine IgG Ab titer levels
+
+Now using our joined/merged/linked abdata dataset filter() for IgG isotype.
+
+```{r}
+igg <- abdata %>% filter(isotype == "IgG")
+head(igg)
+```
+> Q13. Complete the following code to make a summary boxplot of Ab titer levels (MFI) for all antigens:
+
+```{r,warning=FALSE,message=FALSE}
+ggplot(igg) +
+  aes(MFI_normalised, antigen) +
+  geom_boxplot() + 
+    xlim(0,75) +
+  facet_wrap(vars(visit), nrow=2)
+```
+
+> Q14. What antigens show differences in the level of IgG antibody titers recognizing them over time? Why these and not others?
+
+**Ans:** The antigens that show the clearest differences are FIM2/3 and FHA. This pattern suggests that IgG responses are stronger or more variable for FIM2/3 and FHA over time. This could possible be a result of these antigens generating a greater detectible result after vaccination.
+
+> Q15. Filter to pull out only two specific antigens for analysis and create a boxplot for each. You can chose any you like. Below I picked a “control” antigen (“OVA”, that is not in our vaccines) and a clear antigen of interest (“PT”, Pertussis Toxin, one of the key virulence factors produced by the bacterium B. pertussis).
+
+```{r,warning=FALSE,message=FALSE}
+filter(igg, antigen=="OVA") %>%
+  ggplot() +
+  aes(MFI_normalised, col=infancy_vac) +
+  geom_boxplot(show.legend = F) +
+  facet_wrap(vars(visit)) +
+  theme_bw()
+```
+
+> The same for antigen=="FIM2/3"
+
+```{r,warning=FALSE,message=FALSE}
+filter(igg, antigen=="FIM2/3") %>%
+  ggplot() +
+  aes(MFI_normalised, col=infancy_vac) +
+  geom_boxplot(show.legend = FALSE) +
+  facet_wrap(vars(visit)) +
+  theme_bw()
+```
+
+>Q16. What do you notice about these two antigens time courses and the PT data in particular?
+
+**Ans:** The OVA antigen shows steady antibody levels over time. There is a lot of overlap between the aP and wP groups, with no strong time dependent trend. On the other hand, the PT data shows a pattern of reaction: low antibody levels to start marked with an increase of antibody levels overtime. 
+
+> Q17. Do you see any clear difference in aP vs. wP responses?
+
+**Ans:** In the OVA data, aP responses are usually higher than wP responses. In the PT data, wP responses are usually higher than the aP responses.
+
+Lets finish this section by looking at the 2021 dataset IgG PT antigen levels time-course:
+
+```{r,warning=FALSE,message=FALSE}
+abdata.21 <- abdata %>% filter(dataset == "2021_dataset")
+
+abdata.21 %>% 
+  filter(isotype == "IgG",  antigen == "PT") %>%
+  ggplot() +
+    aes(x=planned_day_relative_to_boost,
+        y=MFI_normalised,
+        col=infancy_vac,
+        group=subject_id) +
+    geom_point() +
+    geom_line() +
+    geom_vline(xintercept=0, linetype="dashed") +
+    geom_vline(xintercept=14, linetype="dashed") +
+  labs(title="2021 dataset IgG PT",
+       subtitle = "Dashed lines indicate day 0 (pre-boost) and 14 (apparent peak levels)")
+```
+
+
+> Q18. Does this trend look similar for the 2020 dataset?
+
+```{r,warning=FALSE,message=FALSE}
+abdata.20 <- abdata %>% filter(dataset == "2020_dataset")
+
+abdata.20 %>% 
+  filter(isotype == "IgG",  antigen == "PT") %>%
+  ggplot() +
+    aes(x=planned_day_relative_to_boost,
+        y=MFI_normalised,
+        col=infancy_vac,
+        group=subject_id) +
+    geom_point() +
+    geom_line() +
+    geom_vline(xintercept=0, linetype="dashed") +
+    geom_vline(xintercept=14, linetype="dashed") +
+  labs(title="2020 dataset IgG PT",
+       subtitle = "Dashed lines indicate day 0 (pre-boost) and 14 (apparent peak levels)")
+```
+
+**Ans:** Comparing the 2020 and 2021 datasets, there is an extended follow up period in the 2020 dataset. In addition, the PT signals appear visually higher in the 2020 datasetfor both aP and wP groups overall.
+
+## 5. Obtaining CMI-PB RNASeq data
+
+```{r}
+url <- "https://www.cmi-pb.org/api/v2/rnaseq?versioned_ensembl_gene_id=eq.ENSG00000211896.7"
+
+rna <- read_json(url, simplifyVector = TRUE) 
+```
+
+```{r}
+#meta <- inner_join(specimen, subject)
+ssrna <- inner_join(rna, meta)
+```
+
+> Q19. Make a plot of the time course of gene expression for IGHG1 gene (i.e. a plot of visit vs. tpm).
+
+```{r,message=FALSE,warning=FALSE}
+ggplot(ssrna) +
+  aes(visit, tpm, group=subject_id) +
+  geom_point() +
+  geom_line(alpha=0.2)
+```
+
+> Q20.: What do you notice about the expression of this gene (i.e. when is it at it’s maximum level)?
+
+**Ans:** 
