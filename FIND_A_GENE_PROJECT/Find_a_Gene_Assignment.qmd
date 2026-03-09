@@ -17,7 +17,7 @@ If you do not have a favorite protein, select human RBP4 or KIF11. Do not use be
 **Accession:** Q9NZH8
 
 
-**Function:** Interleukin-36 gamma (IL36G) plays a role in skin inflammation and issume signaling. IL36G is associated in skin disorders such as psoriasis and dandruff.
+**Function:** Interleukin-36 gamma (IL36G) plays a role in skin inflammation and immune signaling. IL36G is associated in skin disorders such as psoriasis and dandruff.
 
 > **Q2.** Perform a BLAST search against a DNA database, such as a database consisting of  genomic DNA or ESTs. The BLAST server can be at NCBI or elsewhere. Include details of the  BLAST method used, database searched and any limits applied (e.g. Organism).  
 
@@ -56,7 +56,7 @@ FLSTSPKDGQPLRVTNISGEAEIINFYFKKM
 
 >Here, tell me the name of the novel protein, and the species from which it derives. It is  very unlikely (but still definitely possible) that you will find a novel gene from an  organism such as S. cerevisiae, human or mouse, because those genomes have  already been thoroughly annotated. It is more likely that you will discover a new gene in  a genome that is currently being sequenced, such as bacteria or plants or protozoa. 
 
-**Name:** IL-1 family-like protein
+**Name:** IL-1 family receptor antagonist-like protein
 
 **Species:** Trionyx triunguis (African softshell turtle)
 
@@ -82,7 +82,7 @@ Below are screenshots of the BLASTP query, BLASTP results, and alignment details
 
 ![Alignment Details](Pelodiscus_sinensis_Alignment.png)
 
-> [Q5] Generate a multiple sequence alignment with your novel protein, your original
+> **Q5.** Generate a multiple sequence alignment with your novel protein, your original
 query protein, and a group of other members of this family from different species. A
 typical number of proteins to use in a multiple sequence alignment for this assignment
 purpose is a minimum of 5 and a maximum of 20 - although the exact number is up to
@@ -159,7 +159,7 @@ SWDHPIMDFYFQQCD
 \endgroup
 ```
 
-**MSA:**
+**MSA (trimmed to remove overhangs):**
 
 
 ```{=latex}
@@ -170,66 +170,29 @@ SWDHPIMDFYFQQCD
 ```{.verbatim}
 CLUSTAL O(1.2.4) multiple sequence alignment
 
-
-IL36G_HUMAN                    ------------------------------------------------------------	0
-Podarcis_cretensis             ------------------------------------------------------------	0
-Trionyx_triunguis              ------------------------------------------------------------	0
-Pelodiscus_sinensis            --------------------MVSRTDNGIRATSPLREGAAEEDSFPSQAPETSTDVGMGS	40
-Chelonia_mydas                 ------------------------------------------------------------	0
-Chelonoidis_abingdonii         ------------------------------------------------------------	0
-Emys_orbicularis               ------------------------------------------------------------	0
-Trachemys_scripta_elegans      MVSSLLLALLLTCCSFDCFSSQSMTNNGIWATPLPGEDETEEDAFLSQVRKTSTDLGLDS	60
-Dromiciops_gliroides           ------------------------------------------------------------	0
-Myotis_myotis                  ------------------------------------------------------------	0
-                                                                                           
-
-IL36G_HUMAN                    -------------------------------MRGTPGDA----------DGGGRAV----	15
-Podarcis_cretensis             -------------------------------MEKVDTETLREKPHKMTVDQKMRDLFHHF	29
-Trionyx_triunguis              ------------------------------------------------------------	0
-Pelodiscus_sinensis            SRPAPPQDTAGT--------------------EPWPGAGPRPDSWAQPSNRDLVELFDEF	80
-Chelonia_mydas                 ------------------------------------------------------------	0
-Chelonoidis_abingdonii         ------------------------MTSTGHTSPAWPGAGRTPGPYSQPDNSNLVDLFNKF	36
-Emys_orbicularis               ------------------------MTGTGHTTPARPGAGRTPGSYSQPGNSNLVNLFNEF	36
-Trachemys_scripta_elegans      NDPEGPVSAAGSASTHTPPCSHQDMTGTGNMSPAQPGAGRTPGPYSQPGNSNLVNLFNEF	120
-Dromiciops_gliroides           ------------------------------------------------------------	0
-Myotis_myotis                  ------------------------------------------------------------	0
-                                                                                           
-
-IL36G_HUMAN                    ---------YQSMCKPITGTINDLNQQVWTLQGQNLVAVPRSD--SVTPVTVAVITCKYP	64
-Podarcis_cretensis             PKPDHSKFPPISLDRPWLYRIWDINQKFLFLKNNMLVAAPKDG--NSPDYLVAVT----P	83
-Trionyx_triunguis              ------------------------------------------------------------	0
-Pelodiscus_sinensis            LNQKQQ--FIPSVPKHSLFTLRDTNQRVIRRLHKQLVATPQTS--NAPPEKISVV----P	132
-Chelonia_mydas                 ----M---SISDIPANAA-DAGVLAQANVPRDQEELRLSRDSC--SVFPEKTSVV----P	46
-Chelonoidis_abingdonii         FSQRP---AIMTVPGPSLFTLRDTSQKVVRCHHNRLMASPQTA--NTLPEKISVV----P	87
-Emys_orbicularis               FKQRP---TIMAVPGPSLFTLRDTSQKVVRYHHNRLVASPQTA--NAPPEKISVV----P	87
-Trachemys_scripta_elegans      FKQGP---TIMAVPRPSLFTLRDTSQKVVRCHHNHLVASPQTA--NAPPEKISVV----P	171
-Dromiciops_gliroides           ----------MVLQKALCFRMKDAALKVIYVQNNQLLARRVQAGKPIDGEEISVV----P	46
-Myotis_myotis                  ----------MVLSGALCFRMKDAALKVLYLQDNQLLAGGVHAGKAVKGEEISVV----P	46
-                                                                                           
-
-IL36G_HUMAN                    EALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFYRAKT	124
-Podarcis_cretensis             NRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFCKSG	143
-Trionyx_triunguis              GQWADGRSLPPSLQ---AVSPFLIGLS-HAPPPHPQDKEIMDLYQNSQEAKRFTFTCMAT	56
-Pelodiscus_sinensis            NQFLDPSNFPIIMGIDNGTRCLSCGTS-APPTLMLEDKEIMALYQNSQEAKRFTFTCVAT	191
-Chelonia_mydas                 NQFMDPSHFPIVMGIDGGLCCLSCSTS-AQPTLMLEDKKIMDLYQNSWEAERFTFTCSAS	105
-Chelonoidis_abingdonii         NQFMDPSHFPIIMGIDGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT	146
-Emys_orbicularis               NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSREAKRFTFTCSAT	146
-Trachemys_scripta_elegans      NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT	230
-Dromiciops_gliroides           NRSLDAKRSPVILGLEGGTQCLSVGIA-QEPVLQIEHKNIMDLYRSKEESKSFTFYMWDT	105
-Myotis_myotis                  NRFLDDSLSPVILGVQGGSQCLSCGMG-QEPTLKLEPVDIMELYRSPKDSRGFTFYRRDT	105
+IL36G_HUMAN                    EALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFYRAKT
+Podarcis_cretensis             NRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFCKSG
+Trionyx_triunguis              GQWADGRSLPPSLQ---AVSPFLIGLS-HAPPPHPQDKEIMDLYQNSQEAKRFTFTCMAT
+Pelodiscus_sinensis            NQFLDPSNFPIIMGIDNGTRCLSCGTS-APPTLMLEDKEIMALYQNSQEAKRFTFTCVAT
+Chelonia_mydas                 NQFMDPSHFPIVMGIDGGLCCLSCSTS-AQPTLMLEDKKIMDLYQNSWEAERFTFTCSAS
+Chelonoidis_abingdonii         NQFMDPSHFPIIMGIDGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT
+Emys_orbicularis               NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSREAKRFTFTCSAT
+Trachemys_scripta_elegans      NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT
+Dromiciops_gliroides           NRSLDAKRSPVILGLEGGTQCLSVGIA-QEPVLQIEHKNIMDLYRSKEESKSFTFYMWDT
+Myotis_myotis                  NRFLDDSLSPVILGVQGGSQCLSCGMG-QEPTLKLEPVDIMELYRSPKDSRGFTFYRRDT
                                    :    *  :        :        *    :   ** ** .    . * *     
 
-IL36G_HUMAN                    GR--TSTLESVAFPDWFIASSK-RDQPIILTSELGKSY----NTAFELNIND-	169
-Podarcis_cretensis             SSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGA-----EITQFYFDKVKD	191
-Trionyx_triunguis              GS--TRRFESVAFPGWFLSTSPKDGQPLRVTNISGEA----EIINFYFKKM--	101
-Pelodiscus_sinensis            GS--TRRFESVAFPGWFLSTSPKDGQPVRVTNISGEA----EIVNFYFKKM--	236
-Chelonia_mydas                 SS--TLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA----EITNFYFKKV--	150
-Chelonoidis_abingdonii         GS--THRFESVAFPGWYLSTSPRNDQPLQVTNRLGEA----EITNFYFKKV--	191
-Emys_orbicularis               GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--	191
-Trachemys_scripta_elegans      GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--	275
-Dromiciops_gliroides           GL--TSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS--ESVITDFYFHQCA-	153
-Myotis_myotis                  GL--TSRFESAAFPGWFLCTVPEADQPLRLSQLPGDASWDHPIMDFYFQQCD-	155
-                              .   *  :* .*:*.*::.:     :*: ::              * :.    
+IL36G_HUMAN                    GR--TSTLESVAFPDWFIASSK-RDQPIILTSELGKSY----NTAFELNIND-
+Podarcis_cretensis             SSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGA-----EITQFYFDKVKD
+Trionyx_triunguis              GS--TRRFESVAFPGWFLSTSPKDGQPLRVTNISGEA----EIINFYFKKM--
+Pelodiscus_sinensis            GS--TRRFESVAFPGWFLSTSPKDGQPVRVTNISGEA----EIVNFYFKKM--
+Chelonia_mydas                 SS--TLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA----EITNFYFKKV--
+Chelonoidis_abingdonii         GS--THRFESVAFPGWYLSTSPRNDQPLQVTNRLGEA----EITNFYFKKV--
+Emys_orbicularis               GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--
+Trachemys_scripta_elegans      GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--
+Dromiciops_gliroides           GL--TSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS--ESVITDFYFHQCA-
+Myotis_myotis                  GL--TSRFESAAFPGWFLCTVPEADQPLRLSQLPGDASWDHPIMDFYFQQCD-
+                              .   *  :* .*:*.*::.:     :*: ::              * :.        
 ```
 
 ```{=latex}
@@ -238,7 +201,7 @@ Myotis_myotis                  GL--TSRFESAAFPGWFLCTVPEADQPLRLSQLPGDASWDHPIMDFYFQ
 
 The multiple sequence alignment demonstrates that the novel Trionyx triunguis fragment clusters with IL36RN-like proteins across reptiles and mammals. Highly conserved motifs including IMDLYQNSQEAKRFTFTC and FESVAFPGWFLSTSPK are shared with IL36RN orthologs but differ from IL36G, indicating that the novel sequence is most closely related to the IL-36 receptor antagonist subgroup of the IL-1 family.
 
-> [Q6] Create a phylogenetic tree, using either a parsimony or distance-based approach.
+> **Q6.** Create a phylogenetic tree, using either a parsimony or distance-based approach.
 Bootstrapping and tree rooting are optional. Use “simple phylogeny” online from the EBI
 or any respected phylogeny program (such as MEGA, PAUP, or Phylip). Paste an image
 of your Cladogram or tree output in your report.
@@ -280,7 +243,7 @@ add.scale.bar()
 ```
 
 
-> [Q7] Generate a sequence identity based heatmap of your aligned sequences using R.
+> **Q7.** Generate a sequence identity based heatmap of your aligned sequences using R.
 If necessary convert your sequence alignment to the ubiquitous FASTA format (Seaview
 can read in clustal format and “Save as” FASTA format for example). Read this FASTA
 format alignment into R with the help of functions in the Bio3D package. Calculate a
@@ -291,7 +254,7 @@ and not cut at the figure margins.
 ![Clustered Heatmap](Q7_identity_heatmap_clustered.png)
 
 
->[Q8] Using R/Bio3D (or an online blast server if you prefer), search the main protein
+> **Q8.** Using R/Bio3D (or an online blast server if you prefer), search the main protein
 structure database for the most similar atomic resolution structures to your aligned
 sequences.
 
@@ -403,7 +366,7 @@ out <- top3 %>%
 out
 ```
 
->[Q9] Using AlphaFold notebook generate a structural model using the default
+> **Q9.** Using AlphaFold notebook generate a structural model using the default
 parameters for your novel protein sequence.
 Note that this can take some time depending upon your sequence length. If your
 model is taking many hours to generate or your input sequence yields a “too
@@ -430,7 +393,7 @@ AlphaFold model shown as spacefill-highlighted and base cartoon representations.
 
 
 
->[Q10] (i) Using your computed structure model (or your closest homologue of known
+> **Q10.** (i) Using your computed structure model (or your closest homologue of known
 structure from the PDB) predict and locate potential small molecule binding sites using
 the CASTpFold server ( https://cfold.bme.uic.edu/castpfold/ ). Provide an image or
 screen-shot of your largest predicted pockets “negative volume” and provide it’s area
@@ -442,6 +405,7 @@ The largest pocket by negative volume was Pocket 1, with a surface area of 255.6
 
 >(ii) Perform a “Target” search of ChEMBEL ( https://www.ebi.ac.uk/chembl/ ) with your novel sequence. Are there any Target Associated Assays and ligand efficiency data reported that may be useful starting points for exploring potential inhibition of your novel protein? If there are no assays listed here simply list “non available as of [date]”.
 
+**Ans:** After performing a biological sequence search with the novel protein sequence, several sequence-similar targets in the interleukin family were identified. The most relevant hit was interleukin-1 receptor antagonist protein from mouse (CHEMBL3414413; E-value 1.2e-11; 42.9% identity; 21 compounds, 23 activities). The ligand efficiency plot showed one data point with a Binding Efficiency Index (BEI) of 13.45 and a Surface Efficiency Index (SEI) of 4.78, with activity in the 1–100 nM range. This suggests that there are some known inhibitors for related proteins that could serve as starting points for exploring potential inhibition of the novel protein, although further experimental validation would be needed to confirm their relevance.
 
 >(iii) Briefly discuss (100 words max) the druggability of your novel protein based on:
 - Presence of well-defined pockets (output of tools like CASTpFold),
@@ -449,3 +413,4 @@ The largest pocket by negative volume was Pocket 1, with a surface area of 255.6
 - Conservation of binding sites across homologs (your conservation analysis in Q10),
 - Potential therapeutic applications if this protein were targeted (you can use ChatGPT, Claude etc. backed up by your reading of the literature here).
 
+**Ans:** The novel protein appears to be moderately druggable. CASTpFold identified a well-defined pocket with a negative volume of 504.623 Å³, which is within the range of druggable sites. The ChEMBL search revealed known inhibitors with associated assay activity and ligand-efficiency data for related interleukin family proteins, suggesting that similar compounds could potentially target the novel protein. Conservation analysis showed that key residues in the predicted binding site are moderately conserved across homologs, indicating functional importance. Because the novel protein is most similar to an IL-36 receptor antagonist–like protein, targeting it would likely alter inflammatory signaling. Inhibiting it may increase inflammation by removing antagonist activity, whereas mimicking or enhancing it could help suppress excessive IL-36–mediated inflammation.
