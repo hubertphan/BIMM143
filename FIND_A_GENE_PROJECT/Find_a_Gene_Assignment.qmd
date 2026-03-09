@@ -29,15 +29,15 @@ If you do not have a favorite protein, select human RBP4 or KIF11. Do not use be
 
 > Also include the output of that BLAST search in your document. If appropriate, change the font  to Courierdd size 10 so that the results are displayed neatly. You can also screen capture a  BLAST output (e.g. alt print screen on a PC or on a MAC press ⌘-shift-4. The pointer becomes  a bulls eye. Select the area you wish to capture and release. The image is saved as a file called  Screen Shot [].png in your Desktop directory). It is not necessary to print out all of the  blast results if there are many pages.  
 
-![TBLASTN QUERY](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLAST_Query.png)
+![TBLASTN QUERY](BLAST_Query.png)
 
 > On the BLAST results, clearly indicate a match that represents a protein sequence,  encoded from some DNA sequence, that is homologous to your query protein. I need to  be able to inspect the pairwise alignment you have selected, including the E value and  score. It should be labeled a "genomic clone" or "mRNA sequence", etc. - but include no  functional annotation.  
 
 **Chosen Match:** Accession OZ346534.1, Trionyx triunguis genome assembly. See alignment details below.
 
-![TBLASTN RESULTS](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLAST_Results.png)
+![TBLASTN RESULTS](BLAST_Results.png)
 
-![Alignment Details](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/Alignment.png)
+![Alignment Details](Alignment.png)
 
 >In general, [Q2] is the most difficult for students because it requires you to have a “feel”  for how to interpret BLAST results. You need to distinguish between a perfect match to  your query (i.e. a sequence that is not “novel”), a near match (something that might be  “novel”, depending on the results of [Q4]), and a non-homologous result.  
 If you are having trouble finding a novel gene try restricting your search to an organism  that is poorly annotated.  
@@ -76,11 +76,11 @@ A BLASTP search against the nr database yielded a top hit protein from *Pelodisc
 
 Below are screenshots of the BLASTP query, BLASTP results, and alignment details of the top hit.
 
-![BLASTP Query](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLASTP_Query.png)
+![BLASTP Query](BLASTP_Query.png)
 
-![BLASTP Results](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/BLASTP_Results.png)
+![BLASTP Results](BLASTP_Results.png)
 
-![Alignment Details](C:/Users/huber/Downloads/BIMM 143/Find_A_Gene_Project/Pelodiscus_sinensis_Alignment.png)
+![Alignment Details](Pelodiscus_sinensis_Alignment.png)
 
 > [Q5] Generate a multiple sequence alignment with your novel protein, your original
 query protein, and a group of other members of this family from different species. A
@@ -440,16 +440,12 @@ and volume.
 
 The largest pocket by negative volume was Pocket 1, with a surface area of 255.621 Å² and a volume of 504.623 Å³.
 
->(ii) Perform a “Target” search of ChEMBEL ( https://www.ebi.ac.uk/chembl/ ) with your
-novel sequence. Are there any Target Associated Assays and ligand efficiency data
-reported that may be useful starting points for exploring potential inhibition of your novel
-protein? If there are no assays listed here simply list “non available as of [date]”.
+>(ii) Perform a “Target” search of ChEMBEL ( https://www.ebi.ac.uk/chembl/ ) with your novel sequence. Are there any Target Associated Assays and ligand efficiency data reported that may be useful starting points for exploring potential inhibition of your novel protein? If there are no assays listed here simply list “non available as of [date]”.
 
 
 >(iii) Briefly discuss (100 words max) the druggability of your novel protein based on:
 - Presence of well-defined pockets (output of tools like CASTpFold),
 - Existence of known inhibitors for related proteins (your search of ChEMBEL),
 - Conservation of binding sites across homologs (your conservation analysis in Q10),
-- Potential therapeutic applications if this protein were targeted (you can use ChatGPT,
-Claude etc. backed up by your reading of the literature here).
+- Potential therapeutic applications if this protein were targeted (you can use ChatGPT, Claude etc. backed up by your reading of the literature here).
 
