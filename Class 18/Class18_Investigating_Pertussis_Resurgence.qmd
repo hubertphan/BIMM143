@@ -216,7 +216,7 @@ ggplot(igg) +
 
 > Q14. What antigens show differences in the level of IgG antibody titers recognizing them over time? Why these and not others?
 
-**Ans:** The antigens that show the clearest differences are FIM2/3 and FHA. This pattern suggests that IgG responses are stronger or more variable for FIM2/3 and FHA over time. This could possible be a result of these antigens generating a greater detectible result after vaccination.
+**Ans:** The antigens that show the clearest differences are FIM2/3 and FHA. These antigens show clear shifts in antibody levels across visits, suggesting a measurable recall response after vaccination. Antigens such as OVA and PT show less clear differences, with more overlap between visits. This may be because these antigens are not included in the vaccines, and thus do not elicit a strong recall response after vaccination or already have more consistent baseline antibody levels.
 
 > Q15. Filter to pull out only two specific antigens for analysis and create a boxplot for each. You can chose any you like. Below I picked a “control” antigen (“OVA”, that is not in our vaccines) and a clear antigen of interest (“PT”, Pertussis Toxin, one of the key virulence factors produced by the bacterium B. pertussis).
 
@@ -253,11 +253,12 @@ filter(igg, antigen=="PT") %>%
 
 >Q16. What do you notice about these two antigens time courses and the PT data in particular?
 
-**Ans:** The OVA antigen shows steady antibody levels over time. There is a lot of overlap between the aP and wP groups, with no strong time dependent trend. On the other hand, the PT data shows a pattern of reaction: low antibody levels to start (apart from a few outliers) marked with an increase of antibody levels overtime. 
+**Ans:** The OVA antigen shows steady antibody levels over time. There is a lot of overlap between the aP and wP groups, with no strong time dependent trend. On the other hand, the PT data shows a pattern of clearer booster response: low antibody levels to start (apart from a few outliers) marked with an increase of antibody levels overtime, and then a decrease. This suggests PT is strongly affected by vaccination, while OVA is not.
 
 > Q17. Do you see any clear difference in aP vs. wP responses?
 
-**Ans:** In the OVA data, aP responses are usually higher than wP responses. In the PT data, wP responses are usually higher than the aP responses.
+**Ans:** In the OVA data, aP and wP responses are very similar and overlap across visits. It it only until the last few visits that the wP responses appear to be higher than the aP responses. In the PT data, aP and wP responses again overlap across visits, with some visits where wP response are higher than aP responses.
+
 
 Lets finish this section by looking at the 2021 dataset IgG PT antigen levels time-course:
 
@@ -330,7 +331,7 @@ ggplot(ssrna) +
 
 > Q21. Does this pattern in time match the trend of antibody titer data? If not, why not?
 
-**Ans:** Compared to the antibody titer data, the trend does not really the OVA and FIM2/3 antibody trends. Despite both antibodies showing high expressions for their day 4 results, these are only outliers to the data. 
+**Ans:** Compared to the antibody titer data, the trend does not really the OVA and FIM2/3 antibody trends. IGHG1 expression peaks earlier (around visit 4), while antibody titers peak later and persist longer. This makes sense as gene expression changes can occur more rapidly after vaccination, while antibody production and accumulation in the blood can take longer to reach peak levels (expression captures genes turning on, antibody levels reflect the accumulation of antibodies/proteins over time).
 
 We can dig deeper and color and/or facet by infancy_vac status:
 
