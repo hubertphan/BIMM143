@@ -1,7 +1,8 @@
 ---
 title: "Class 18 Mini Project: Investigating Pertussis Resurgence"
 author: "Hubert Phan (PID: A17663330)"
-format: html
+format: pdf
+toc: true
 ---
 
 ## 1. Investigating pertussis cases by year
@@ -239,9 +240,20 @@ filter(igg, antigen=="FIM2/3") %>%
   theme_bw()
 ```
 
+> The same for antigen=="PT"
+
+```{r,warning=FALSE,message=FALSE}
+filter(igg, antigen=="PT") %>%
+  ggplot() +
+  aes(MFI_normalised, col=infancy_vac) +
+  geom_boxplot(show.legend = FALSE) +
+  facet_wrap(vars(visit)) +
+  theme_bw()
+```
+
 >Q16. What do you notice about these two antigens time courses and the PT data in particular?
 
-**Ans:** The OVA antigen shows steady antibody levels over time. There is a lot of overlap between the aP and wP groups, with no strong time dependent trend. On the other hand, the PT data shows a pattern of reaction: low antibody levels to start marked with an increase of antibody levels overtime. 
+**Ans:** The OVA antigen shows steady antibody levels over time. There is a lot of overlap between the aP and wP groups, with no strong time dependent trend. On the other hand, the PT data shows a pattern of reaction: low antibody levels to start (apart from a few outliers) marked with an increase of antibody levels overtime. 
 
 > Q17. Do you see any clear difference in aP vs. wP responses?
 
@@ -314,4 +326,27 @@ ggplot(ssrna) +
 
 > Q20.: What do you notice about the expression of this gene (i.e. when is it at it’s maximum level)?
 
-**Ans:** 
+**Ans:** The peak expression is found is found on visit 4. While visits 5 and 8 show spikes, these are driven by only a few outliers, while the expression on visit 4 shows consistently high expression across most data points.
+
+> Q21. Does this pattern in time match the trend of antibody titer data? If not, why not?
+
+**Ans:** Compared to the antibody titer data, the trend does not really the OVA and FIM2/3 antibody trends. Despite both antibodies showing high expressions for their day 4 results, these are only outliers to the data. 
+
+We can dig deeper and color and/or facet by infancy_vac status:
+
+```{r,message=FALSE,warning=FALSE}
+ggplot(ssrna) +
+  aes(tpm, col=infancy_vac) +
+  geom_boxplot() +
+  facet_wrap(vars(visit))
+```
+
+There is however no obvious wP vs. aP differences here even if we focus in on a particular visit:
+
+```{r,warning=FALSE,message=FALSE}
+ssrna %>%  
+  filter(visit==4) %>% 
+  ggplot() +
+    aes(tpm, col=infancy_vac) + geom_density() + 
+    geom_rug() 
+```
