@@ -25,34 +25,27 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Welcome to my BIMM 143 Bioinformatics class website. This site collects my class reports, mini-projects, and assignments from the course.\n\n\nThis portfolio is published with GitHub Pages and contains rendered Quarto/HTML reports for each class assignment.\n\n\n\n\nClass Reports\nGitHub Repository\n\n\n\n\n\nClass 13: Transcriptomics and the analysis of RNA-Seq data\nClass 14: RNA-Seq analysis mini-project\nClass 17: Obtaining and processing SRA datasets on AWS\nClass 18: Investigating Pertussis Resurgence\n\n\n\n\nUse the navigation bar or go directly to the Class Reports page to browse all published assignments."
+    "text": "Welcome to my BIMM 143 Bioinformatics class website. This site collects my class reports, mini-projects, and assignments from the course.\n\n\nThis portfolio is published with GitHub Pages and contains rendered Quarto/HTML reports for each class assignment.\nGitHub repository: hubertphan/BIMM143\n\n\n\n\nClass 4: Bioinformatics data analysis with R\nClass 5: Data exploration and visualization in R\nClass 6: R functions and R packages from CRAN and BioConductor\nClass 6 homework\nClass 7: Introduction to machine learning for Bioinformatics\nClass 8: Unsupervised Learning Mini-Project\nClass 9: Candy Mini-Project\nClass 10: Structural bioinformatics\nClass 11: Structural bioinformatics - Focus on AlphaFold\nClass 12: Population analysis\nClass 13: Transcriptomics and the analysis of RNA-Seq data\nClass 14: RNA-Seq analysis mini-project\nClass 17: Obtaining and processing SRA datasets on AWS\nClass 18: Investigating Pertussis Resurgence\n\n\n\n\n\nFind-a-Gene Project"
   },
   {
     "objectID": "index.html#about-this-site",
     "href": "index.html#about-this-site",
     "title": "Home",
     "section": "",
-    "text": "This portfolio is published with GitHub Pages and contains rendered Quarto/HTML reports for each class assignment."
+    "text": "This portfolio is published with GitHub Pages and contains rendered Quarto/HTML reports for each class assignment.\nGitHub repository: hubertphan/BIMM143"
   },
   {
-    "objectID": "index.html#quick-links",
-    "href": "index.html#quick-links",
+    "objectID": "index.html#core-class-reports",
+    "href": "index.html#core-class-reports",
     "title": "Home",
     "section": "",
-    "text": "Class Reports\nGitHub Repository"
+    "text": "Class 4: Bioinformatics data analysis with R\nClass 5: Data exploration and visualization in R\nClass 6: R functions and R packages from CRAN and BioConductor\nClass 6 homework\nClass 7: Introduction to machine learning for Bioinformatics\nClass 8: Unsupervised Learning Mini-Project\nClass 9: Candy Mini-Project\nClass 10: Structural bioinformatics\nClass 11: Structural bioinformatics - Focus on AlphaFold\nClass 12: Population analysis\nClass 13: Transcriptomics and the analysis of RNA-Seq data\nClass 14: RNA-Seq analysis mini-project\nClass 17: Obtaining and processing SRA datasets on AWS\nClass 18: Investigating Pertussis Resurgence"
   },
   {
-    "objectID": "index.html#featured-work",
-    "href": "index.html#featured-work",
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
     "title": "Home",
     "section": "",
-    "text": "Class 13: Transcriptomics and the analysis of RNA-Seq data\nClass 14: RNA-Seq analysis mini-project\nClass 17: Obtaining and processing SRA datasets on AWS\nClass 18: Investigating Pertussis Resurgence"
-  },
-  {
-    "objectID": "index.html#course-reports",
-    "href": "index.html#course-reports",
-    "title": "Home",
-    "section": "",
-    "text": "Use the navigation bar or go directly to the Class Reports page to browse all published assignments."
+    "text": "Find-a-Gene Project"
   }
 ]
