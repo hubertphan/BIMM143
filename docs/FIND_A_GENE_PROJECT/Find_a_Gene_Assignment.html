@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hubert Phan (PID: A17663330)">
+
+<title>Find a Gene Assignment</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Find_a_Gene_Assignment_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Find_a_Gene_Assignment_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Find_a_Gene_Assignment_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Find_a_Gene_Assignment_files/libs/quarto-html/popper.min.js"></script>
+<script src="Find_a_Gene_Assignment_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Find_a_Gene_Assignment_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Find_a_Gene_Assignment_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Find_a_Gene_Assignment_files/libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Find_a_Gene_Assignment_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Find_a_Gene_Assignment_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Find_a_Gene_Assignment_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="..\Find_a_Gene_Assignment.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Find a Gene Assignment</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Hubert Phan (PID: A17663330) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p><strong>Q1.</strong> Tell me the name of a protein you are interested in. Include the species, accession number and known function. This can be a human protein or a protein from any other species as long as it’s function is known.<br>
+If you do not have a favorite protein, select human RBP4 or KIF11. Do not use beta globin as this is in the worked example report that I provide you with online.</p>
+</blockquote>
+<p><strong>Name:</strong> Interleukin-36 gamma (IL36G)</p>
+<p><strong>Species:</strong> Homo sapiens</p>
+<p><strong>Accession:</strong> Q9NZH8</p>
+<p><strong>Function:</strong> Interleukin-36 gamma (IL36G) plays a role in skin inflammation and immune signaling. IL36G is associated in skin disorders such as psoriasis and dandruff.</p>
+<blockquote class="blockquote">
+<p><strong>Q2.</strong> Perform a BLAST search against a DNA database, such as a database consisting of genomic DNA or ESTs. The BLAST server can be at NCBI or elsewhere. Include details of the BLAST method used, database searched and any limits applied (e.g.&nbsp;Organism).</p>
+</blockquote>
+<p><strong>Method:</strong> TBLASTN search against reptilia nt</p>
+<p><strong>Database:</strong> Nucleotide collection (nt)</p>
+<p><strong>Organsim:</strong> Reptilia (taxid:8459)</p>
+<blockquote class="blockquote">
+<p>Also include the output of that BLAST search in your document. If appropriate, change the font to Courierdd size 10 so that the results are displayed neatly. You can also screen capture a BLAST output (e.g.&nbsp;alt print screen on a PC or on a MAC press ⌘-shift-4. The pointer becomes a bulls eye. Select the area you wish to capture and release. The image is saved as a file called Screen Shot [].png in your Desktop directory). It is not necessary to print out all of the blast results if there are many pages.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="BLAST_Query.png" class="img-fluid figure-img"></p>
+<figcaption>TBLASTN QUERY</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>On the BLAST results, clearly indicate a match that represents a protein sequence, encoded from some DNA sequence, that is homologous to your query protein. I need to be able to inspect the pairwise alignment you have selected, including the E value and score. It should be labeled a “genomic clone” or “mRNA sequence”, etc. - but include no functional annotation.</p>
+</blockquote>
+<p><strong>Chosen Match:</strong> Accession OZ346534.1, Trionyx triunguis genome assembly. See alignment details below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="BLAST_Results.png" class="img-fluid figure-img"></p>
+<figcaption>TBLASTN RESULTS</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Alignment.png" class="img-fluid figure-img"></p>
+<figcaption>Alignment Details</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>In general, [Q2] is the most difficult for students because it requires you to have a “feel” for how to interpret BLAST results. You need to distinguish between a perfect match to your query (i.e.&nbsp;a sequence that is not “novel”), a near match (something that might be “novel”, depending on the results of [Q4]), and a non-homologous result.<br>
+If you are having trouble finding a novel gene try restricting your search to an organism that is poorly annotated.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Q3.</strong> Gather information about this “novel” protein. At a minimum, show me the protein sequence of the “novel” protein as displayed in your BLAST results from [Q2] as FASTA format (you can copy and paste the aligned sequence subject lines from your BLAST result page if necessary) or translate your novel DNA sequence using a tool called EMBOSS Transeq at the EBI. Don’t forget to translate all six reading frames; the ORF (open reading frame) is likely to be the longest sequence without a stop codon. It may not start with a methionine if you don’t have the complete coding region. Make sure the sequence you provide includes a header/subject line and is in traditional FASTA format.</p>
+</blockquote>
+<p>The genomic DNA region surrounding the tblastn hit in Trionyx triunguis was extracted from the genome assembly and expanded beyond the aligned coordinates to capture potential coding sequence. The sequence was then translated in all six reading frames using EMBOSS Transeq. The longest open reading frame (ORF) without a stop codon was identified by examining for conserved motifs observed in the original BLAST alignment. This segment is the protein sequence used for downstream BLASTP analysis to assess sequence novelty.</p>
+<p><strong>Chosen Sequence:</strong></p>
+<pre class="fasta"><code>&gt;Trionyx_triunguis_tblastn_hit_translated_fragment frame_2
+GQWADGRSLPPSLQAVSPFLIGLSHAPPPHPQDKEIMDLYQNSQEAKRFTFTCMATGSTRRFESVAFPGW
+FLSTSPKDGQPLRVTNISGEAEIINFYFKKM</code></pre>
+<blockquote class="blockquote">
+<p>Here, tell me the name of the novel protein, and the species from which it derives. It is very unlikely (but still definitely possible) that you will find a novel gene from an organism such as S. cerevisiae, human or mouse, because those genomes have already been thoroughly annotated. It is more likely that you will discover a new gene in a genome that is currently being sequenced, such as bacteria or plants or protozoa.</p>
+</blockquote>
+<p><strong>Name:</strong> IL-1 family receptor antagonist-like protein</p>
+<p><strong>Species:</strong> Trionyx triunguis (African softshell turtle)</p>
+<p><strong>Lineage:</strong> Eukaryota; Metazoa; Chordata; Reptilia; Testudines; Trionychidae; Trionyx</p>
+<blockquote class="blockquote">
+<p><strong>Q4.</strong> For the purposes of this project, “novel” is defined as follows. Take the protein sequence (your answer to [Q3]) and use it as a query in a BLASTP search of the nr database at NCBI.</p>
+</blockquote>
+<ul>
+<li>If there is a match with <strong>100% amino acid identity</strong> to a protein in the database <strong>from the same species</strong>, then your protein is <strong>NOT novel</strong> (even if the match is to a protein with a name such as “unknown”). Someone has already found and annotated this sequence and assigned it an accession number.</li>
+<li>If the <strong>top match reported has less than 100% identity</strong>, then it is likely that your protein is <strong>novel</strong>, and you have succeeded.</li>
+<li>If there is a match with <strong>100% identity</strong>, but to a <strong>different species</strong> than the one you started with, then you have likely succeeded in finding a novel gene.</li>
+<li>If there are <strong>no database matches</strong> to the original query from [Q1], this indicates that you have <strong>partially succeeded</strong>: yes, you may have found a new gene, but no, it is not actually homologous to the original query. You should probably start over.</li>
+</ul>
+<p><strong>Details:</strong></p>
+<p>A BLASTP search against the nr database yielded a top hit protein from <em>Pelodiscus sinensis</em> (Chinese softshell turtle).</p>
+<p>Below are screenshots of the BLASTP query, BLASTP results, and alignment details of the top hit.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="BLASTP_Query.png" class="img-fluid figure-img"></p>
+<figcaption>BLASTP Query</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="BLASTP_Results.png" class="img-fluid figure-img"></p>
+<figcaption>BLASTP Results</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Pelodiscus_sinensis_Alignment.png" class="img-fluid figure-img"></p>
+<figcaption>Alignment Details</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q5.</strong> Generate a multiple sequence alignment with your novel protein, your original query protein, and a group of other members of this family from different species. A typical number of proteins to use in a multiple sequence alignment for this assignment purpose is a minimum of 5 and a maximum of 20 - although the exact number is up to you. Include the multiple sequence alignment in your report. Use Courier font with a size appropriate to fit page width. Side-note: Indicate your sequence in the alignment by choosing an appropriate name for each sequence in the input unaligned sequence file (i.e.&nbsp;edit the sequence file so that the species, or short common, names (rather than accession numbers) display in the output alignment and in the subsequent answers below). The goal in this step is to create an interesting an alignment for building a phylogenetic tree that illustrates species divergence.</p>
+</blockquote>
+<p><strong>Re-labeled sequences for alignment:</strong></p>
+<pre class="verbatim"><code>&gt;Trionyx_triunguis IL-1 family-like protein frame_2 (novel protein)
+GQWADGRSLPPSLQAVSPFLIGLSHAPPPHPQDKEIMDLYQNSQEAKRFTFTCMATGSTRRFESVAFPGW
+FLSTSPKDGQPLRVTNISGEAEIINFYFKKM
+
+&gt;IL36G_HUMAN
+MRGTPGDADGGGRAVYQSMCKPITGTINDLNQQVWTLQGQNLVAVPRSDSVTPVTVAVIT 
+CKYPEALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFY 
+RAKTGRTSTLESVAFPDWFIASSKRDQPIILTSELGKSYNTAFELNIND
+
+&gt;Pelodiscus_sinensis XP_075766824.1 interleukin-1 family member 10-like isoform X4
+MVSRTDNGIRATSPLREGAAEEDSFPSQAPETSTDVGMGSSRPAPPQDTAGTEPWPGAGPRPDSWAQPSN
+RDLVELFDEFLNQKQQFIPSVPKHSLFTLRDTNQRVIRRLHKQLVATPQTSNAPPEKISVVPNQFLDPSN
+FPIIMGIDNGTRCLSCGTSAPPTLMLEDKEIMALYQNSQEAKRFTFTCVATGSTRRFESVAFPGWFLSTS
+PKDGQPVRVTNISGEAEIVNFYFKKM
+
+&gt;Chelonoidis_abingdonii XP_032626992.1 interleukin-36 receptor antagonist protein-like
+MTSTGHTSPAWPGAGRTPGPYSQPDNSNLVDLFNKFFSQRPAIMTVPGPSLFTLRDTSQKVVRCHHNRLM
+ASPQTANTLPEKISVVPNQFMDPSHFPIIMGIDGGTRCLSCGTSAQPTLMLEDKKIMDLYQNSQEAKRFT
+FTCSATGSTHRFESVAFPGWYLSTSPRNDQPLQVTNRLGEAEITNFYFKKV
+
+&gt;Emys_orbicularis XP_065254442.1 interleukin-36 receptor antagonist protein-like
+MTGTGHTTPARPGAGRTPGSYSQPGNSNLVNLFNEFFKQRPTIMAVPGPSLFTLRDTSQKVVRYHHNRLV
+ASPQTANAPPEKISVVPNQFMDPSHFPIIMGINGGTRCLSCGTSAQPTLMLEDKKIMDLYQNSREAKRFT
+FTCSATGSTLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEAEITNFYFKKV
+
+&gt;Trachemys_scripta_elegans XP_034615290.1 interleukin-36 receptor antagonist protein-like isoform X2
+MVSSLLLALLLTCCSFDCFSSQSMTNNGIWATPLPGEDETEEDAFLSQVRKTSTDLGLDSNDPEGPVSAA
+GSASTHTPPCSHQDMTGTGNMSPAQPGAGRTPGPYSQPGNSNLVNLFNEFFKQGPTIMAVPRPSLFTLRD
+TSQKVVRCHHNHLVASPQTANAPPEKISVVPNQFMDPSHFPIIMGINGGTRCLSCGTSAQPTLMLEDKKI
+MDLYQNSQEAKRFTFTCSATGSTLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEAEITNFYFKKV
+
+&gt;Chelonia_mydas XP_043392104.1 interleukin-36 receptor antagonist protein
+MSISDIPANAADAGVLAQANVPRDQEELRLSRDSCSVFPEKTSVVPNQFMDPSHFPIVMGIDGGLCCLSC
+STSAQPTLMLEDKKIMDLYQNSWEAERFTFTCSASSSTLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA
+EITNFYFKKV
+
+&gt;Podarcis_cretensis XP_079811393.1 interleukin-36 receptor antagonist protein-like isoform 1
+MEKVDTETLREKPHKMTVDQKMRDLFHHFPKPDHSKFPPISLDRPWLYRIWDINQKFLFLKNNMLVAAPK
+DGNSPDYLVAVTPNRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFC
+KSGSSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGAEITQFYFDKVKD
+
+&gt;Dromiciops_gliroides XP_043845630.1 interleukin-36 receptor antagonist protein
+MVLQKALCFRMKDAALKVIYVQNNQLLARRVQAGKPIDGEEISVVPNRSLDAKRSPVILGLEGGTQCLSV
+GIAQEPVLQIEHKNIMDLYRSKEESKSFTFYMWDTGLTSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS
+ESVITDFYFHQCA
+
+&gt;Myotis_myotis XP_036167553.1 interleukin-36 receptor antagonist protein
+MVLSGALCFRMKDAALKVLYLQDNQLLAGGVHAGKAVKGEEISVVPNRFLDDSLSPVILGVQGGSQCLSC
+GMGQEPTLKLEPVDIMELYRSPKDSRGFTFYRRDTGLTSRFESAAFPGWFLCTVPEADQPLRLSQLPGDA
+SWDHPIMDFYFQQCD</code></pre>
+<p><strong>MSA (trimmed to remove overhangs):</strong></p>
+<pre class="verbatim"><code>CLUSTAL O(1.2.4) multiple sequence alignment
+
+IL36G_HUMAN                    EALEQGRGDPIYLGIQNPEMCLYCEKVGEQPTLQLKEQKIMDLYGQPEPVKPFLFYRAKT
+Podarcis_cretensis             NRGMDENKSPIFLGTQDGAQTLSCGESGGQPQLTLEHKAIMDLYNDGKEHKNFTFFCKSG
+Trionyx_triunguis              GQWADGRSLPPSLQ---AVSPFLIGLS-HAPPPHPQDKEIMDLYQNSQEAKRFTFTCMAT
+Pelodiscus_sinensis            NQFLDPSNFPIIMGIDNGTRCLSCGTS-APPTLMLEDKEIMALYQNSQEAKRFTFTCVAT
+Chelonia_mydas                 NQFMDPSHFPIVMGIDGGLCCLSCSTS-AQPTLMLEDKKIMDLYQNSWEAERFTFTCSAS
+Chelonoidis_abingdonii         NQFMDPSHFPIIMGIDGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT
+Emys_orbicularis               NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSREAKRFTFTCSAT
+Trachemys_scripta_elegans      NQFMDPSHFPIIMGINGGTRCLSCGTS-AQPTLMLEDKKIMDLYQNSQEAKRFTFTCSAT
+Dromiciops_gliroides           NRSLDAKRSPVILGLEGGTQCLSVGIA-QEPVLQIEHKNIMDLYRSKEESKSFTFYMWDT
+Myotis_myotis                  NRFLDDSLSPVILGVQGGSQCLSCGMG-QEPTLKLEPVDIMELYRSPKDSRGFTFYRRDT
+                                   :    *  :        :        *    :   ** ** .    . * *     
+
+IL36G_HUMAN                    GR--TSTLESVAFPDWFIASSK-RDQPIILTSELGKSY----NTAFELNIND-
+Podarcis_cretensis             SSTETGSFESAAFPGWFLSTLPEPNQPIRLSHQGGA-----EITQFYFDKVKD
+Trionyx_triunguis              GS--TRRFESVAFPGWFLSTSPKDGQPLRVTNISGEA----EIINFYFKKM--
+Pelodiscus_sinensis            GS--TRRFESVAFPGWFLSTSPKDGQPVRVTNISGEA----EIVNFYFKKM--
+Chelonia_mydas                 SS--TLRFELVAFPGWYLSTSPRNDQPLWVTYHLGEA----EITNFYFKKV--
+Chelonoidis_abingdonii         GS--THRFESVAFPGWYLSTSPRNDQPLQVTNRLGEA----EITNFYFKKV--
+Emys_orbicularis               GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--
+Trachemys_scripta_elegans      GS--TLRFESVAFPGWYLSTSPRNDQPLRVTNRLGEA----EITNFYFKKV--
+Dromiciops_gliroides           GL--TSRLESAAYPGWFLCTIHEDEKPITLTNHPEDS--ESVITDFYFHQCA-
+Myotis_myotis                  GL--TSRFESAAFPGWFLCTVPEADQPLRLSQLPGDASWDHPIMDFYFQQCD-
+                              .   *  :* .*:*.*::.:     :*: ::              * :.        </code></pre>
+<p>The multiple sequence alignment demonstrates that the novel Trionyx triunguis fragment clusters with IL36RN-like proteins across reptiles and mammals. Highly conserved motifs including IMDLYQNSQEAKRFTFTC and FESVAFPGWFLSTSPK are shared with IL36RN orthologs but differ from IL36G, indicating that the novel sequence is most closely related to the IL-36 receptor antagonist subgroup of the IL-1 family.</p>
+<blockquote class="blockquote">
+<p><strong>Q6.</strong> Create a phylogenetic tree, using either a parsimony or distance-based approach. Bootstrapping and tree rooting are optional. Use “simple phylogeny” online from the EBI or any respected phylogeny program (such as MEGA, PAUP, or Phylip). Paste an image of your Cladogram or tree output in your report.</p>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Find_a_Gene_Assignment_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Phylogenetic Tree</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q7.</strong> Generate a sequence identity based heatmap of your aligned sequences using R. If necessary convert your sequence alignment to the ubiquitous FASTA format (Seaview can read in clustal format and “Save as” FASTA format for example). Read this FASTA format alignment into R with the help of functions in the Bio3D package. Calculate a sequence identity matrix (again using a function within the Bio3D package). Then generate a heatmap plot and add to your report. Do make sure your labels are visible and not cut at the figure margins.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Q7_identity_heatmap_clustered.png" class="img-fluid figure-img"></p>
+<figcaption>Clustered Heatmap</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q8.</strong> Using R/Bio3D (or an online blast server if you prefer), search the main protein structure database for the most similar atomic resolution structures to your aligned sequences.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>List the top 3 unique hits (i.e.&nbsp;not hits representing different chains from the same structure) along with their Evalue and sequence identity to your query. Please also add annotation details of these structures. For example include the annotation terms PDB identifier (structureId), Method used to solve the structure (experimentalTechnique), resolution (resolution), and source organism (source).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>HINT: You can use a single sequence from your alignment or generate a consensus sequence from your alignment using the Bio3D function consensus(). The Bio3D functions blast.pdb(), plot.blast() and pdb.annotate() are likely to be of most relevance for completing this task. Note that the results of blast.pdb() contain the hits PDB identifier (or pdb.id) as well as Evalue and identity. The results of pdb.annotate() contain the other annotation terms noted above. Note that if your consensus sequence has lots of gap positions then it will be better to use an original sequence from the alignment for your search of the PDB. In this case you could chose the sequence with the highest identity to all others in your alignment by calculating the row-wise maximum from your sequence identity matrix.</p>
+</blockquote>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    ID Technique Resolution       Source   Evalue Identity
+1 4P0J     X-RAY       2.30 Homo sapiens 2.12e-42     44.6
+2 1MD6     X-RAY       1.60 Mus musculus 1.02e-38     44.1
+3 4P0L     X-RAY       1.55 Homo sapiens 2.62e-38     41.8</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q9.</strong> Using AlphaFold notebook generate a structural model using the default parameters for your novel protein sequence. Note that this can take some time depending upon your sequence length. If your model is taking many hours to generate or your input sequence yields a “too many amino acids” (i.e.&nbsp;length) error you can focus on a single domain from your sequence - identify region by searching for PFAM domain matches.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Once complete save the resulting PDB format file for your records. Finally, generate a molecular figure of your generated PDB structure using the Mol* viewer online (or VMD/PyMol/Chimera if you prefer). To complete your analysis you should highlight conserved residues that are likely to be functional as spacefill and the protein as cartoon colored by local alpha fold pLDDT quality score. You can determine conserved residues from the alignment generated by the AlphaFold server and use a conservation cutoff appropriate for the diversity of your protein alignment (e.g.&nbsp;between 60% and 99% conserved). Note that pLDDT score is contained in the B-factor column of your PDB downloaded file. Please use a white or transparent background for your figure (i.e.&nbsp;not the default black in PyMol/VMD/Chimera etc.).</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="novel_spacefill.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Spacefill Representation</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="novel_base.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Base Representation</figcaption>
+</figure>
+</div>
+<p>AlphaFold model shown as spacefill-highlighted and base cartoon representations.</p>
+<blockquote class="blockquote">
+<p><strong>Q10.</strong> (i) Using your computed structure model (or your closest homologue of known structure from the PDB) predict and locate potential small molecule binding sites using the CASTpFold server ( https://cfold.bme.uic.edu/castpfold/ ). Provide an image or screen-shot of your largest predicted pockets “negative volume” and provide it’s area and volume.</p>
+</blockquote>
+<p><img src="novel_neg_Volume.png" class="img-fluid"></p>
+<p>The largest pocket by negative volume was Pocket 1, with a surface area of 255.621 Å² and a volume of 504.623 Å³.</p>
+<blockquote class="blockquote">
+<ol start="2" type="i">
+<li>Perform a “Target” search of ChEMBEL ( https://www.ebi.ac.uk/chembl/ ) with your novel sequence. Are there any Target Associated Assays and ligand efficiency data reported that may be useful starting points for exploring potential inhibition of your novel protein? If there are no assays listed here simply list “non available as of [date]”.</li>
+</ol>
+</blockquote>
+<p><strong>Ans:</strong> After performing a biological sequence search with the novel protein sequence, several sequence-similar targets in the interleukin family were identified. The most relevant hit was interleukin-1 receptor antagonist protein from mouse (CHEMBL3414413; E-value 1.2e-11; 42.9% identity; 21 compounds, 23 activities). The ligand efficiency plot showed one data point with a Binding Efficiency Index (BEI) of 13.45 and a Surface Efficiency Index (SEI) of 4.78, with activity in the 1–100 nM range. This suggests that there are some known inhibitors for related proteins that could serve as starting points for exploring potential inhibition of the novel protein, although further experimental validation would be needed to confirm their relevance.</p>
+<blockquote class="blockquote">
+<ol start="3" type="i">
+<li>Briefly discuss (100 words max) the druggability of your novel protein based on:</li>
+</ol>
+<ul>
+<li>Presence of well-defined pockets (output of tools like CASTpFold),</li>
+<li>Existence of known inhibitors for related proteins (your search of ChEMBEL),</li>
+<li>Conservation of binding sites across homologs (your conservation analysis in Q10),</li>
+<li>Potential therapeutic applications if this protein were targeted (you can use ChatGPT, Claude etc. backed up by your reading of the literature here).</li>
+</ul>
+</blockquote>
+<p><strong>Ans:</strong> The novel protein appears to be moderately druggable. CASTpFold identified a well-defined pocket with a negative volume of 504.623 Å³, which is within the range of druggable sites. The ChEMBL search revealed known inhibitors with associated assay activity and ligand-efficiency data for related interleukin family proteins, suggesting that similar compounds could potentially target the novel protein. Conservation analysis showed that key residues in the predicted binding site are moderately conserved across homologs, indicating functional importance. Because the novel protein is most similar to an IL-36 receptor antagonist–like protein, targeting it would likely alter inflammatory signaling. Inhibiting it may increase inflammation by removing antagonist activity, whereas mimicking or enhancing it could help suppress excessive IL-36–mediated inflammation.</p>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

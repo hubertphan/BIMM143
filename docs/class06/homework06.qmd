@@ -1,0 +1,204 @@
+---
+title: "Homework06"
+author: "Hubert Phan"
+format: pdf
+---
+
+> Q6. How would you generalize the original code above to work with any set of input protein structures?
+
+```{r}
+#' Title: Protein Analysis Plotter.  Visualize B-factors from PDB Structures
+#'
+#'This function reads a protein structure from the Protein Data Bank (PDB), 
+#'selects atoms either by biological criteria (chain and atom type) or by
+#'precomputed indices, and plots atomic B-factors with 
+#'optional secondary structure annotation.
+#'
+#' @param pdb_id Character string specifying the PDB accession code.
+#'   **Required.**
+#' @param chain Character string specifying the chain identifier to select.
+#'   **Optional.** Used only if inds is not provided.
+#' @param elety Character string specifying the atom or 
+#' element type (e.g., "CA").
+#'   **Optional.** Used only if inds is not provided.
+#' @param inds Optional precomputed atom indices obtained from
+#'   atom.select(). **Optional.** If provided, overrides
+#'   chain and elety.
+#' @param sse Logical indicating whether secondary structure information
+#'   should be retained during trimming. **Optional.**
+#' @param typ Character string specifying the plot type passed to
+#'   plotb3(). Default set to "l". **Optional.**
+#' @param ylab Character string specifying the y-axis label.
+#' Default set to "B-factor". **Optional.**
+#' @param main Optional character string specifying the plot title.
+#'   **Optional.**
+#' @param ... Additional graphical parameters passed to plotb3().
+#'   **Optional.**
+#'
+#'@details
+#' -The only required argument is pdb_id. If pdb_id is a vector, 
+#' a single inds is typically only valid for one structure.
+#' -Atom selection must be specified either
+#' by providing inds OR by providing both chain and elety.
+#' -If inds is provided, it takes precedence over chain and elety.
+#' -If chain or elety is supplied as a vector, only the first element is used.
+#' -This ensures a single, consistent selection is applied 
+#' across all PDB structures processed by the function.
+#' @returns
+#' Returns the plot of B-factors for the selected atoms 
+#' (based on chain and atom type or index) in the 
+#' specified PDB structure.
+#' Invisibly returns a list containing the trimmed 
+#' PDB structure and b-factors for each provided pdb_id.
+#' @export
+#'
+#' @examples
+#' protein_analysis_plotter(c("4AKE", "1AKE", "1E4Y"), "A", "CA", sse = FALSE)
+
+
+
+
+protein_analysis_plotter<- function(
+  pdb_id,
+  chain = NULL,
+  elety = NULL,
+  inds = NULL,
+  sse = TRUE,
+  typ = "l",
+  ylab = "B-factor",
+  main = NULL,
+  ...
+){
+  # Load required library
+  library(bio3d)
+  
+  #Required Argument Checks
+  if (missing(pdb_id) || length(pdb_id) < 1 || is.null(pdb_id)) {
+    stop("`pdb_id` is required and must be a non-empty character string.")
+  }
+  pdb_id <- as.character(pdb_id)
+  
+  #Validate main
+  if (!is.null(main)) {
+    if (!is.character(main)) {
+      stop("`main` must be NULL or a character vector.")
+    }
+    if (!(length(main) == 1 || length(main) == length(pdb_id))) {
+      stop("`main` must have length 1 or the same length as `pdb_id`.")
+    }
+  }
+  
+  #Enforce inds or (chain and elety) paths
+  using_inds = !is.null(inds)
+  if(using_inds){
+    if (!is.null(chain) || !is.null(elety)) {
+      stop("Provide either `inds` OR (`chain` and `elety`), not both.")
+    }
+  }else{
+    if (is.null(chain) || is.null(elety)) {
+      stop("Either `inds` OR both `chain` and `elety` must be provided.")
+    }
+    #force all plots to use single chain and elety
+    chain <- as.character(chain)[1]
+    elety <- as.character(elety)[1]
+    
+    #final check
+    if (!nzchar(chain) || !nzchar(elety)) {
+      stop("`chain` and `elety` must be non-empty character strings.")
+    }
+  }
+  
+  #store results here
+  plot_results <- vector("list", length = length(pdb_id))
+  names(plot_results) <- pdb_id
+  
+  #loop over each pdb_id, for each do read.pbd, trim.pdb, extract b-factors, plot
+  for(i in seq_along(pdb_id)){
+    pb_id <- pdb_id[i]
+    
+    # Read the PDB structure carefully, wrap in tryCatch to handle potential errors
+    pdb_structure <- tryCatch(
+      read.pdb(pb_id),
+      error = function(e) {
+        warning("Skipping PDB '", pb_id, "': failed to read PDB (", e$message, ")")
+        return(NULL)
+      }
+    )
+    if (is.null(pdb_structure)) next
+    
+    # Select atoms based on provided criteria
+    # Trim carefully, use trycatch to handle potential errors
+    selected_trim <- tryCatch(
+      {
+        if (using_inds) { #inds methods
+          trim.pdb(pdb_structure, inds = inds, sse = sse)
+        } else { #chain + elety
+          trim.pdb(pdb_structure, chain = chain, elety = elety, sse = sse)
+        }
+      },
+      error = function(e) {
+        warning("Skipping PDB '", pb_id, "': trimming failed (", e$message, ")")
+        return(NULL)
+      }
+    )
+    if (is.null(selected_trim)) next
+    
+    # Check if atoms remain
+    if (is.null(selected_trim$atom) || nrow(selected_trim$atom) == 0) {
+      warning("Skipping PDB '", pb_id, "': no atoms remain after trimming")
+      next
+    }
+    
+    # Extract B-factors carefully
+    # Check if atoms has a b column
+    if (!"b" %in% colnames(selected_trim$atom)) {
+      warning("Skipping PDB '", pb_id, "': no B-factor data available")
+      next
+    }
+    
+    b_factors <- selected_trim$atom$b
+    
+    # Ensure b_factors is numeric
+    if (!is.numeric(b_factors)) {
+      warning("Skipping PDB '", pb_id, "': B-factor data is not numeric")
+      next
+    }
+    
+    #If allow pbd_ids to be vecotr then allow main to be vector too
+    plot_main <- if (is.null(main)) {
+      NULL
+    } else if (length(main) == 1) {
+      main
+    } else {
+      main[i]
+    }
+
+    
+    #Create specific title for each plot
+    if (is.null(plot_main)) {
+      plot_main <- paste0("B-factors: ", pb_id)
+      
+      if(using_inds){
+        plot_main <- paste0(plot_main, " (using provided indices)")
+      }else{
+        plot_main <- paste0(plot_main, " (Chain: ", chain, ", Elety: ", elety, ")")
+      }
+      
+    }
+    
+    # Plot B-factors
+    plotb3(b_factors, sse = selected_trim, typ = typ, ylab = ylab, main = plot_main, ...)
+    
+    # Store results, main goal is to print the plot but store these 
+    # for potential further analysis
+    plot_results[[pb_id]] <- list(
+      pdb = selected_trim,
+      b_factors = b_factors
+    )
+  }
+  invisible(plot_results)
+}
+
+protein_analysis_plotter(c("4AKE", "1AKE", "1E4Y"), "A", "CA", sse = TRUE)
+
+```

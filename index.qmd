@@ -1,0 +1,27 @@
+---
+title: "Home"
+---
+
+# BIMM 143 Class Portfolio
+
+Welcome to my BIMM 143 Bioinformatics class website. This site collects my class reports, mini-projects, and assignments from the course.
+
+## About this site
+
+This portfolio is published with GitHub Pages and contains rendered Quarto/HTML reports for each class assignment.
+
+## Quick links
+
+- [Class Reports](reports.qmd)
+- [GitHub Repository](https://github.com/hubertphan/BIMM143)
+
+## Featured work
+
+- [Class 13: Transcriptomics and the analysis of RNA-Seq data](Class%2013/lab13.html)
+- [Class 14: RNA-Seq analysis mini-project](class%2014/class14_rnaSeqMiniProject.html)
+- [Class 17: Obtaining and processing SRA datasets on AWS](Class17/class17_SRA_datasets_on_AWS.html)
+- [Class 18: Investigating Pertussis Resurgence](Class%2018/Class18_Investigating_Pertussis_Resurgence.html)
+
+## Course reports
+
+Use the navigation bar or go directly to the [Class Reports](reports.qmd) page to browse all published assignments.

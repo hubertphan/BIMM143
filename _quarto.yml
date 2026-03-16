@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - reports.qmd
+  resources:
+    - class04/**
+    - class05/**
+    - class06/**
+    - class07/**
+    - class08/**
+    - Class 9/**
+    - Structural_Bioinformatics/**
+    - class11/**
+    - Class 12/**
+    - Class 13/**
+    - class 14/**
+    - Class17/**
+    - Class 18/**
+    - FIND_A_GENE_PROJECT/**
+
+website:
+  title: "BIMM 143 Portfolio"
+  site-url: "https://hubertphan.github.io/BIMM143/"
+  favicon: images/logo.png
+  navbar:
+    logo: images/logo.png
+    left:
+      - href: index.qmd
+        text: Home
+      - href: reports.qmd
+        text: Class Reports
+    right:
+      - icon: github
+        href: https://github.com/hubertphan/BIMM143
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    page-layout: full

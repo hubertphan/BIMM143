@@ -1,0 +1,301 @@
+---
+title: "Class 6: R Functions Lab"
+author: "Hubert Phan"
+format: pdf
+toc: true
+---
+
+## Gradebook Function
+
+> Q1. Write a function grade() to determine an overall grade from a vector of student homework assignment scores dropping the lowest single score. If a student misses a homework (i.e. has anNA value) this can be used as a score to be potentially dropped. Your final function should beadquately explained with code comments and be able to work on an example class gradebook such as this one in CSV format: "https://tinyurl.com/gradeinput" [3pts]
+
+```{r}
+#| label: Load libraries
+#| warning: false
+#| message: false
+library(dplyr)
+library(tidyr)
+
+
+#| label: Define grade function
+#| warning: false
+#| message: false
+
+#' Grade Function: Determine overall grades after dropping 
+#' lowest score from a vector of homework scores. Missing values 
+#' will be treated as 0.
+#'
+#' @param scores. A data frame where each row represents a 
+#' student and each column represents a homework assignment score. 
+#'
+#' @returns A list containing: A named vector of final grades 
+#' for each student after dropping the lowest score, 
+#' and a data frame with difficulty metrics for each assignment.
+#' - grades: A named vector where names are student 
+#' identifiers (row names of the input
+#' data frame) and values are the calculated final grades.
+#' - difficulty_analysis: A data frame with two metrics 
+#' for each assignment:
+#'   - true_difficulty: The median score of all submissions 
+#'   (excluding NAs).
+#'   - submission_rate: The proportion of students who 
+#'   submitted the assignment (non-NA values).
+#' @export
+#'
+#' @examples
+#' gradebook <- data.frame("StudentID" = c("S1", "S2", "S3"), 
+#' Homework1 = c(85, 90, NA), Homework2 = c(80, NA, 70), 
+#' Homework3 = c(90, 95, 85))
+#' grade(gradebook[,-1]) # Exclude StudentID column for grading
+#' 
+grade <- function(scores) {#assume that scores is df
+  #grab hw_cols
+  #no need to grab id_col because we will set 
+  #row.names = 1 when reading in the data
+  hw_cols <- names(scores)
+  #ANALYZE difficulty: need to handle NA values, need to 
+  #drop lowest score per student, need to calculate 
+  #average of remaining scores
+  #cant just replace NA values with 0 because that 
+  #would unfairly lower the average
+  #treat 0 as a valid low score, but NA as a non-submission
+  #consider median scores: The median is a better indicator 
+  #of difficulty than the mean because it is not influenced 
+  #by extreme values
+  
+  #consider a ratio of scores and actual attempts. So difficultly rating = median(score)/num_attempts:
+      #High Difficulty (Low Scores) + High Submission: A genuinely hard assignment.
+      #Low Difficulty (High Scores) + Low Submission: An assignment that wasn't hard to pass, but many students skipped (perhaps a busy week for the class).
+      #low Difficulty (high Scores) + high Submission: An easy assignment that most students completed successfully.
+      #High Difficulty (Low Scores) + Low Submission: the assignment was hard and many people gave up.
+  
+  #create named vectors to store true difficulty and submission rate to make downstream analysis explicit and avoid reliance on column-name parsing.
+  true_difficulty <- sapply(scores[hw_cols], median, na.rm = TRUE)
+  submission_rate <- sapply(scores[hw_cols], function(x) mean(!is.na(x)))
+
+  
+  #now handle NA values in scores by replacing them with 0 for the purpose of dropping the lowest score
+  scores_clean <- scores %>%
+    mutate(across(all_of(hw_cols), ~ replace_na(., 0)))
+  #determine the grade per student after removing the lowest score ((sum of all assignments-lowest score)/(num_assignments-1). store in a new vector, return that vector. Associate student names with the grades.
+  results <- scores_clean %>%
+    rowwise() %>%
+    mutate(
+      #find minimum score per student and sum
+      row_min   = min(c_across(all_of(hw_cols))),
+      row_sum   = sum(c_across(all_of(hw_cols))),
+      
+      #calculate adjusted sum and count
+      #do not double subtract, do not subtract char value
+      final_grade = (row_sum - row_min) / (length(hw_cols) - 1)
+      #calculate final grade, this appends a new column to the dataframe
+    ) %>%
+    ungroup()
+    
+  #Create named vector of grades
+  final_grades <- setNames(results$final_grade, rownames(scores))
+
+  
+  return(list(
+    grades = final_grades,
+    true_difficulty_Medians = true_difficulty,
+    submission_rate = submission_rate
+  ))
+}
+```
+    
+    
+>Q2. Using your grade() function and the supplied gradebook, Who is the top scoring student overall in the gradebook? [3pts]
+
+```{r}
+#| label: Load gradebook data
+#| warning: false
+#| message: false
+
+# Load the gradebook data from the provided URL
+url <- "https://tinyurl.com/gradeinput"
+gradebook <- read.csv(url, row.names = 1)
+head(gradebook)
+```
+Now apply the grade function to the gradebook and determine the top scoring student.
+```{r}
+#| label: Apply grade function to gradebook
+#| warning: false
+#| message: false
+
+# Apply the grade function to the gradebook
+results <- grade(gradebook)
+# Extract the grades
+grades <- results$grades
+# Identify the top scoring student
+top_student <- (which.max(grades))
+top_student
+```
+
+> Q3. From your analysis of the gradebook, which homework was toughest on students (i.e. obtained the lowest scores overall? [2pts]
+
+```{r}
+#| label: Analyze homework difficulty
+#| warning: false
+#| message: false
+
+# Extract difficulty analysis from the results
+difficulty_results <- results$true_difficulty_Medians
+# Identify the toughest homework based on true difficulty
+toughest_homework <- which.min(difficulty_results)
+toughest_homework
+```
+Lets create a bar plot to visualize the difficulty of each homework assignment and confirm our findings.
+```{r}
+#| label: Plot homework difficulty
+#| fig-cap: "Homework Difficulty Analysis"
+
+boxplot(gradebook, 
+        main = "Homework Difficulty Analysis", 
+        xlab = "Homework Assignments", 
+        ylab = "Scores")
+
+```
+So we can confirm that homework 2 was the toughest on students as it has the lowest median score among all assignments, despite having outliers with high scores.
+
+>Q4. Optional Extension: From your analysis of the gradebook, which homework was most predictive of overall score (i.e. highest correlation with average grade score)? [1pt]
+
+```{r}
+#| label: Analyze homework predictiveness
+#| warning: false
+#| message: false
+
+# The question asks are the final results for each student correlated with each homework assignment.
+hw_cols <- names(gradebook) #homework columns
+final_grades <- results$grades #student grades, with drop applied
+
+correlations <- sapply(hw_cols, function(hw) { #apply a function over each homework column
+  #x = scores on this homework, y = final grades
+  cor(gradebook[[hw]], final_grades, use = "complete.obs")
+})
+correlations
+# Identify the most predictive homework based on highest correlation
+most_predictive_homework <- which.max(correlations)
+most_predictive_homework
+```
+## Add function
+> Write your first R function, add() to add some numbers
+
+```{r}
+#| label: Define add function
+#| warning: false
+#| message: false
+
+#' Add Function: Adds two numbers together.
+add <- function(x, y) {
+  return(x + y)
+}
+```
+Simple Example:
+```{r}
+add(2, 3) # Should return 5
+```
+Example where inputs are vectors:
+```{r}
+add(c(1, 2), c(3, 4)) # Should return c(4, 6)
+```
+Example where inputs are unequal length vectors:
+```{r}
+add(c(1, 2, 3), c(4, 5)) # Should return c(5, 7, 7) due to recycling
+```
+Example where three inputs are provided:
+```{r}
+#add(1, 2, 3) # returns an error because add() only accepts two arguments
+```
+
+## DNA Sequence Generator
+
+> Q. Write a second function, generate_dna() to return nucleotide
+sequences of a user specified length.
+
+```{r}
+#| label: Define generate_dna function
+#| warning: false
+#| message: false
+
+#' Generate DNA Function: Generates a random DNA sequence of specified length.
+
+generate_dna <- function(length) {
+  # Define the nucleotides
+  nucleotides <- c("A", "T", "C", "G")
+  
+  # Sample nucleotides with replacement to create a sequence
+  dna_sequence <- sample(nucleotides, size = length, replace = TRUE)
+}
+
+# Example usage:
+ex1 <- generate_dna(10) # Should return a random DNA sequence of length 10
+ex1
+```
+
+Improve the function to return the sequence as a single string rather than a vector of characters.
+
+```{r}
+#| label: Define improved generate_dna function
+#| warning: false
+#| message: false
+
+#' Improved Generate DNA Function: Generates a random DNA sequence of specified length as a single string.
+
+generate_dna <- function(length) {
+  # Define the nucleotides
+  nucleotides <- c("A", "T", "C", "G")
+  
+  # Sample nucleotides with replacement to create a sequence
+  dna_sequence <- sample(nucleotides, size = length, replace = TRUE)
+  
+  # Collapse the vector into a single string
+  dna_string <- paste(dna_sequence, collapse = "")
+  
+  return(dna_string)
+}
+
+# Example usage:
+ex2 <- generate_dna(10) # Should return a random DNA sequence of length
+ex2
+```
+
+## Protein Function
+
+> Q. Write a third function, generate_protein() to return protein
+sequences of different lengths and test whether these sequences are
+unique in nature.
+
+```{r}
+#| label: Define generate_protein function
+#| warning: false
+#| message: false
+
+#' Generate Protein Function: Generates a random protein sequence of specified length as a single string.
+#' Tests with BLAST to see if protein seq exists.
+
+generate_protein <- function(length) {
+  # Define the amino acids
+  amino_acids <- c("A", "R", "N", "D", "C", "E", "Q", "G", "H", "I",
+                   "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V")
+  
+  # Sample amino acids with replacement to create a sequence
+  protein_sequence <- sample(amino_acids, size = length, replace = TRUE)
+  
+  # Collapse the vector into a single string
+  protein_string <- paste(protein_sequence, collapse = "")
+  
+  return(protein_string)
+}
+
+#create protein sequences of lengths from 6-12 in FASTA formate
+protein_seqs <- sapply(6:12, generate_protein)
+names(protein_seqs) <- paste0(">", 6:12)
+fasta_output <- paste(names(protein_seqs), protein_seqs, sep = "\n")
+cat(fasta_output, sep = "\n")
+```
+
+> Q. Which sequences are unique?
+
+The sequences HMETFW, WEGYAGI, and HRFGTKTA were not unique as they are found in nature with 100% identity and 100% query coverage according to BLAST results. The other sequences generated were unique and not found in nature based on BLAST search results.
+
