@@ -1,0 +1,7 @@
+"0",""
+"0","# Remove diagnosis column for clustering"
+"0","wisc.df <- wisc.df[ , -1]"
+"0",""
+"0","# Create diagnosis vector for later "
+"0","diagnosis <- as.factor(read.csv(fna.data)$diagnosis)"
+"0",""

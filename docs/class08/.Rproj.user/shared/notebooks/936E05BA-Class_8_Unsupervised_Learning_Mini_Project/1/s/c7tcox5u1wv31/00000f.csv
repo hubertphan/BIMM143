@@ -1,0 +1,6 @@
+"0","# Scatter plot observations by components 1 and 2"
+"0","library(ggplot2)"
+"0",""
+"0","ggplot(wisc.pr$x) +"
+"0","  aes(x = PC1, y = PC2, col=diagnosis) +"
+"0","  geom_point()"

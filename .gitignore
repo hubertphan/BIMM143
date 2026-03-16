@@ -7,6 +7,11 @@
 .Rproj.user/
 *_files/
 
+# Keep published site assets in docs/
+!docs/**/
+!docs/**/*_files/
+!docs/**/*_files/**
+
 # Python
 __pycache__/
 *.pyc

@@ -1,0 +1,6 @@
+"0","# Proportion of variance explained by PC1"
+"0","summary(wisc.pr)$importance[2, 1]"
+"1","[1]"
+"1"," 0.44272"
+"1","
+"

@@ -1,0 +1,6 @@
+"0","ggplot(subject) +"
+"0","  aes(time_length(age, ""year""),"
+"0","      fill=as.factor(infancy_vac)) +"
+"0","  geom_histogram(show.legend=FALSE) +"
+"0","  facet_wrap(vars(infancy_vac), nrow=2) +"
+"0","  xlab(""Age in years"")"

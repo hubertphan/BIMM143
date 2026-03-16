@@ -1,0 +1,28 @@
+{
+    "id": "94E84634",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1769906077953.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "id": "39407913d3a1429493f35dc3f6a9a5a2",
+        "name": "wisc.hclust",
+        "title": "wisc.hclust",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2134185276008,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1769906077953,
+    "read_only": false,
+    "read_only_alternatives": []
+}

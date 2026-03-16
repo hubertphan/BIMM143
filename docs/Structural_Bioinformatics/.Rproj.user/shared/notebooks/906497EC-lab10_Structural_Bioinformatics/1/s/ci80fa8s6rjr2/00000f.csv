@@ -1,0 +1,41 @@
+"0","adk <- read.pdb(""6s36"")"
+"1","  Note: Accessing on-line PDB file
+"
+"1","   PDB has ALT records, taking A only, rm.alt=TRUE
+"
+"0","adk"
+"1","
+ Call:  "
+"1",""
+"1","read.pdb(file = ""6s36"")"
+"1",""
+"1","
+"
+"1","
+   Total Models#: 1
+     Total Atoms#: 1898,  XYZs#: 5694  Chains#: 1  (values: A)
+
+     Protein Atoms#: 1654  (residues/Calpha atoms#: 214)
+     Nucleic acid Atoms#: 0  (residues/phosphate atoms#: 0)
+
+     Non-protein/nucleic Atoms#: 244  (residues: 244)
+     Non-protein/nucleic resid values: [ CL (3), HOH (238), MG (2), NA (1) ]
+
+"
+"1","   Protein sequence:
+"
+"1",""
+"1","      MRIILLGAPGAGKGTQAQFIMEKYGIPQISTGDMLRAAVKSGSELGKQAKDIMDAGKLVT
+      DELVIALVKERIAQEDCRNGFLLDGFPRTIPQADAMKEAGINVDYVLEFDVPDELIVDKI
+      VGRRVHAPSGRVYHVKFNPPKVEGKDDVTGEELTTRKDDQEETVRKRLVEYHQMTAPLIG
+      YYSKEAEAGNTKYAKVDGTKPVAEVRADLEKILG"
+"1",""
+"1","
+
+"
+"1","+ attr: atom, xyz, seqres, helix, sheet,"
+"1","
+"
+"1","        calpha, remark, call"
+"1","
+"

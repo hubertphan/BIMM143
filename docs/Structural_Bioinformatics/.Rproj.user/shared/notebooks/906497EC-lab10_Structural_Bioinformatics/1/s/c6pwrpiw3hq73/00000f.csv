@@ -1,0 +1,5 @@
+"0","library(bio3dview)"
+"0","library(NGLVieweR)"
+"0",""
+"0","view.pdb(pdb) |>"
+"0","  setSpin()"

@@ -1,0 +1,2 @@
+"0","# Visualize first principal component"
+"0","pc1 <- mktrj(pc.xray, pc=1, file=""pc_1.pdb"")"

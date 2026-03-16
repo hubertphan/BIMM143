@@ -1,0 +1,8 @@
+"0","# Select the important ASP 25 residue"
+"0","sele <- atom.select(pdb, resno=25)"
+"0",""
+"0","# and highlight them in spacefill representation"
+"0","view.pdb(pdb, cols=c(""navy"",""teal""), "
+"0","         highlight = sele,"
+"0","         highlight.style = ""spacefill"") |>"
+"0","  setRock()"

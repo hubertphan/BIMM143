@@ -1,0 +1,5 @@
+"0","# Create data.pc.dist. Only consider the first 7 PC"
+"0","data.pc <- wisc.pr$x[, 1:7] # take first 7 PC scores"
+"0","data.pc.dist <- dist(data.pc) # Euclidean distance on PC scores"
+"0","# Hierarchal Clustering with ward.D2"
+"0","wisc.pr.hclust <- hclust(data.pc.dist, method = ""ward.D2"")"

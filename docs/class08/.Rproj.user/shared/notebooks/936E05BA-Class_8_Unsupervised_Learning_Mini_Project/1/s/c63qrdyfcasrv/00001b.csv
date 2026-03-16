@@ -1,0 +1,4 @@
+"0","#| fig-width: 10"
+"0","#| fig-height: 8"
+"0",""
+"0","plot(wisc.pr.hclust)"

@@ -1,0 +1,2 @@
+"0","# Create biplot of PCA results"
+"0","biplot(wisc.pr, scale = 0)"

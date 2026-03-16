@@ -1,0 +1,5 @@
+"0","p + "
+"0","  geom_vline(xintercept = 1946, linetype = ""dashed"", color = ""red"") +"
+"0","  geom_vline(xintercept = 1996, linetype = ""dashed"", color = ""blue"") +"
+"0","  annotate(""text"", x = 1946, y = max(cdc$No..Reported.Pertussis.Cases), label = ""wP"", angle = 90, vjust = -0.5, color = ""red"") +"
+"0","  annotate(""text"", x = 1996, y = max(cdc$No..Reported.Pertussis.Cases), label = ""aP"", angle = 90, vjust = -0.5, color = ""blue"")"

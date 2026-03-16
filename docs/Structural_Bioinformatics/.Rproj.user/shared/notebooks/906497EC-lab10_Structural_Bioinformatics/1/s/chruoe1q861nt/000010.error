@@ -1,0 +1,1 @@
+{"frames":[{"func":"get.seq(\"1ake_A\")","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0},{"func":"Sys.sleep(checkInterval2 * retry)","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error : object 'pdb_data' not found\n"}
