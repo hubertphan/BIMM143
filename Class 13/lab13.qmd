@@ -1,8 +1,7 @@
 ---
 title: "Class 13: Transcriptomics and the analysis of RNA-Seq data"
 author: "Hubert Phan (PID: A 17663330)"
-format: pdf
-toc: true
+format: html
 ---
 
 ## Bioconductor setup
