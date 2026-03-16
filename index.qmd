@@ -14,6 +14,8 @@ GitHub repository: [hubertphan/BIMM143](https://github.com/hubertphan/BIMM143)
 
 ## Core class reports
 
+### HTML
+
 - [Class 4: Bioinformatics data analysis with R](class04/class04.html)
 - [Class 5: Data exploration and visualization in R](class05/class05.html)
 - [Class 6: R functions and R packages from CRAN and BioConductor](class06/class06.html)
@@ -29,6 +31,26 @@ GitHub repository: [hubertphan/BIMM143](https://github.com/hubertphan/BIMM143)
 - [Class 17: Obtaining and processing SRA datasets on AWS](Class17/class17_SRA_datasets_on_AWS.html)
 - [Class 18: Investigating Pertussis Resurgence](Class%2018/Class18_Investigating_Pertussis_Resurgence.html)
 
+### github_document format markdown
+
+- [Class 5: Data exploration and visualization in R](https://github.com/hubertphan/BIMM143/blob/main/class05.md)
+- [Class 6: R functions and R packages from CRAN and BioConductor](https://github.com/hubertphan/BIMM143/blob/main/class06.md)
+- [Class 6 homework](https://github.com/hubertphan/BIMM143/blob/main/homework06.md)
+- [Class 7: Introduction to machine learning for Bioinformatics](https://github.com/hubertphan/BIMM143/blob/main/class07.md)
+- [Class 8: Unsupervised Learning Mini-Project](https://github.com/hubertphan/BIMM143/blob/main/Class_8_Unsupervised_Learning_Mini_Project.md)
+- [Class 11: Structural bioinformatics - Focus on AlphaFold](https://github.com/hubertphan/BIMM143/blob/main/Class11AlphaFold.md)
+- [Class 12: Population analysis](https://github.com/hubertphan/BIMM143/blob/main/q13_q14_popAnalysis.md)
+- [Class 13: Transcriptomics and the analysis of RNA-Seq data](https://github.com/hubertphan/BIMM143/blob/main/lab13.md)
+- [Class 14: RNA-Seq analysis mini-project](https://github.com/hubertphan/BIMM143/blob/main/class14_rnaSeqMiniProject.md)
+- [Class 17: Obtaining and processing SRA datasets on AWS](https://github.com/hubertphan/BIMM143/blob/main/class17_SRA_datasets_on_AWS.md)
+- [Class 18: Investigating Pertussis Resurgence](https://github.com/hubertphan/BIMM143/blob/main/Class18_Investigating_Pertussis_Resurgence.md)
+
 ## Projects
 
+### HTML
+
 - [Find-a-Gene Project](FIND_A_GENE_PROJECT/Find_a_Gene_Assignment.html)
+
+### github_document format markdown
+
+- [Find-a-Gene Project](https://github.com/hubertphan/BIMM143/blob/main/Find_a_Gene_Assignment.md)
